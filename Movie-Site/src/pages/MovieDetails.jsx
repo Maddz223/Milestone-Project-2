@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { getCountryCode } from "../utils/location"; // Checks users browser location to display where to watch in that country.
 
 const MovieDetails = () => {
     const { movieId } = useParams();
