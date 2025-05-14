@@ -6,6 +6,7 @@ import Watchlist from "./pages/Watchlist";
 import ContactUs from "./pages/ContactUs";
 import Navbar from "./components/Navbar";
 import MovieDetails from "./pages/MovieDetails";
+import TVDetails from './pages/TVDetails';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/watchlist" element={<Watchlist />} />{/* Watchlist Route */}
         <Route path="/contact-us" element={<ContactUs />} />{/* ContractUS Route */}
         <Route path="/movie/:movieId" element={<MovieDetails />} /> {/* Movie Details Route */}
+        <Route path="/tv/:tvId" element={<TVDetails />} />{/* TV Series Details Route */}
       </Routes>
     </Router>
   );
