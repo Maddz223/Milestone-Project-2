@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { getCountryCode } from "../utils/location"; // Checks users browser location to display where to watch in that country.
+import { getCountryCode } from "../utils/location";
+import TrailerModal from "../components/TrailerModal";
 
 const MovieDetails = () => {
     const { movieId } = useParams();
@@ -9,40 +10,37 @@ const MovieDetails = () => {
     const [cast, setCast] = useState([]);
     const [trailers, setTrailers] = useState([]);
     const [watchProviders, setWatchProviders] = useState({});
+    const [selectedTrailer, setSelectedTrailer] = useState(null);
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
             try {
                 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-                const country = getCountryCode(); // Gets country code from browser.
+                const country = getCountryCode();
 
-                // Fetch movie details
                 const movieResponse = await axios.get(
                     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
                 );
                 setMovieDetails(movieResponse.data);
 
-                // Fetch cast
                 const castResponse = await axios.get(
                     `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`
                 );
                 setCast(castResponse.data.cast);
 
-                // Fetch trailers
                 const trailersResponse = await axios.get(
                     `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`
                 );
                 const limitedTrailers = trailersResponse.data.results
                     .filter(video => video.type === "Trailer" && video.site === "YouTube")
-                    .slice(0, 3); // limit to 3 trailers
+                    .slice(0, 3);
                 setTrailers(limitedTrailers);
 
-                // Fetch where to watch
                 const watchProvidersResponse = await axios.get(
                     `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${API_KEY}`
                 );
                 const providersData = watchProvidersResponse.data.results;
-                setWatchProviders(providersData[country] ? { [country]: providersData[country] } : {}); // Sets country code from browser.
+                setWatchProviders(providersData[country] ? { [country]: providersData[country] } : {});
             } catch (error) {
                 console.error("Failed to fetch movie details:", error);
                 setMovieDetails(null);
@@ -65,12 +63,13 @@ const MovieDetails = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <div className="flex">
+            <div className="flex flex-col lg:flex-row">
                 <img
-                    src={movieDetails.poster_path ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+                    src={movieDetails.poster_path
+                        ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
                         : "https://via.placeholder.com/500x750?text=No+Image"}
                     alt={movieDetails.title}
-                    className="w-64 h-100 mr-8"
+                    className="w-64 h-auto mr-8 mb-6 lg:mb-0"
                 />
                 <div className="text-left">
                     <h2 className="text-4xl font-bold">{movieDetails.title}</h2>
@@ -80,7 +79,7 @@ const MovieDetails = () => {
 
                     <h3 className="text-xl mt-4">Cast:</h3>
                     <ul>
-                        {cast.slice(0, 7).map((actor) => (// Sets the amount of actors to list
+                        {cast.slice(0, 7).map((actor) => (
                             <li key={actor.id}>{actor.name} as {actor.character}</li>
                         ))}
                     </ul>
@@ -91,15 +90,14 @@ const MovieDetails = () => {
                             {trailers.map((trailer) => (
                                 <div
                                     key={trailer.id}
-                                    className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-100 dark:bg-gray-800"
+                                    className="cursor-pointer rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-100 dark:bg-gray-800"
+                                    onClick={() => setSelectedTrailer(trailer)}
                                 >
-                                    <iframe
-                                        className="w-full h-64"
-                                        src={`https://www.youtube.com/embed/${trailer.key}`}
-                                        title={trailer.name}
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    ></iframe>
+                                    <img
+                                        src={`https://img.youtube.com/vi/${trailer.key}/hqdefault.jpg`}
+                                        alt={trailer.name}
+                                        className="w-full h-48 object-cover"
+                                    />
                                     <div className="p-2 text-center text-sm font-medium text-gray-700 dark:text-gray-200">
                                         {trailer.name}
                                     </div>
@@ -110,12 +108,20 @@ const MovieDetails = () => {
                         <p className="text-gray-600 dark:text-gray-400">No trailers available.</p>
                     )}
 
-                    <h3 className="text-xl mt-4">Where to Watch:</h3>
+                    {/* Modal for trailer */}
+                    {selectedTrailer && (
+                        <TrailerModal
+                            trailer={selectedTrailer}
+                            onClose={() => setSelectedTrailer(null)}
+                        />
+                    )}
+
+                    <h3 className="text-xl mt-6">Where to Watch:</h3>
                     {watchProviders && Object.keys(watchProviders).length > 0 ? (
                         Object.entries(watchProviders).map(([country, data]) => (
                             <div key={country}>
-                                <div className="flex gap-4 flex-wrap">
-                                    {data.flatrate &&
+                                <div className="flex gap-4 flex-wrap mt-2">
+                                    {Array.isArray(data.flatrate) && data.flatrate.length > 0 ? (
                                         data.flatrate.map((provider) => (
                                             <div key={provider.provider_id} className="flex flex-col items-center w-20">
                                                 <img
@@ -126,15 +132,26 @@ const MovieDetails = () => {
                                                 <span className="text-xs text-center mt-1">{provider.provider_name}</span>
                                             </div>
                                         ))
-                                    }
+                                    ) : (
+                                        <span className="text-sm text-gray-500">No streaming providers available.</span>
+                                    )}
                                 </div>
                             </div>
                         ))
                     ) : (
                         <p>No streaming services available.</p>
                     )}
+
                     <p className="text-sm text-gray-500 mt-2">
-                        Watch provider data powered by <a href="https://www.justwatch.com" target="_blank" rel="noopener noreferrer" className="underline">JustWatch</a>.
+                        Watch provider data powered by{" "}
+                        <a
+                            href="https://www.justwatch.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline"
+                        >
+                            JustWatch
+                        </a>.
                     </p>
                 </div>
             </div>
