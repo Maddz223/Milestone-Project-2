@@ -3,11 +3,12 @@ import axios from 'axios';
 import Card from '../components/Card';
 
 const TVSeries = () => {
-  const [tvSeries, setTvSeries] = useState([]);
+const [tvSeries, setTvSeries] = useState([]);
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
   useEffect(() => {
     const fetchTVSeries = async () => {
-      const response = await axios.get('https://api.themoviedb.org/3/tv/popular?api_key=YOUR_API_KEY');
+      const response = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`);
       setTvSeries(response.data.results);
     };
     fetchTVSeries();

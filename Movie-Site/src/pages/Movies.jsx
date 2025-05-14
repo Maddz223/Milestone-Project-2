@@ -3,11 +3,11 @@ import axios from 'axios';
 import Card from '../components/Card';
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
-
+    const [movies, setMovies] = useState([]);
+    const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
   useEffect(() => {
     const fetchMovies = async () => {
-      const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY');
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
       setMovies(response.data.results);
     };
     fetchMovies();

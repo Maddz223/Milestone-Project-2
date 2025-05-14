@@ -8,3 +8,4 @@ const ContactUs = () => {
     </div>
   );
 };
+export default ContactUs;
