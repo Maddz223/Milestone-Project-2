@@ -14,12 +14,12 @@ const TrailerModal = ({ trailer, onClose }) => {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-transparent backdrop-blur-sm transition-opacity duration-300"
             onClick={handleBackdropClick}
         >
             <div
                 ref={modalRef}
-                className="relative bg-white dark:bg-gray-900 rounded-lg p-4 shadow-2xl max-w-fit"
+                className="relative bg-white dark:bg-gray-900 rounded-lg p-4 shadow-2xl max-w-fit transform transition-all duration-300 scale-100 animate-fadeIn"
             >
                 {/* Close button */}
                 <button

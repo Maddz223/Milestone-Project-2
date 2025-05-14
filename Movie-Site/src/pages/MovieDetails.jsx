@@ -69,7 +69,7 @@ const MovieDetails = () => {
                         ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
                         : "https://via.placeholder.com/500x750?text=No+Image"}
                     alt={movieDetails.title}
-                    className="w-64 h-auto mr-8 mb-6 lg:mb-0"
+                    className="w-64 h-100 mr-8 mb-6 lg:mb-0"
                 />
                 <div className="text-left">
                     <h2 className="text-4xl font-bold">{movieDetails.title}</h2>
