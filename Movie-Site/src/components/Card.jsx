@@ -7,10 +7,10 @@ const Card = ({ movie, type }) => {
   
   useEffect(() => {
     const fetchWatchProviders = async () => {
-      const apiKey = 'YOUR_API_KEY';
+          const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
       const endpoint = type === 'movie' 
-        ? `https://api.themoviedb.org/3/movie/${movie.id}/watch/providers?api_key=${apiKey}`
-        : `https://api.themoviedb.org/3/tv/${movie.id}/watch/providers?api_key=${apiKey}`;
+        ? `https://api.themoviedb.org/3/movie/${movie.id}/watch/providers?api_key=${API_KEY}`
+        : `https://api.themoviedb.org/3/tv/${movie.id}/watch/providers?api_key=${API_KEY}`;
       
       try {
         const response = await axios.get(endpoint);
