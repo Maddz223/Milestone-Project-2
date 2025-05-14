@@ -8,50 +8,67 @@ const MovieDetails = () => {
     const [movieDetails, setMovieDetails] = useState(null);
     const [cast, setCast] = useState([]);
     const [trailers, setTrailers] = useState([]);
-    const [watchProviders, setWatchProviders] = useState([]);
+    const [watchProviders, setWatchProviders] = useState({});
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
-            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+            try {
+                const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+                const country = getCountryCode(); // Gets country code from browser.
 
-            // Fetch movie details
-            const movieResponse = await axios.get(
-                `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
-            );
-            setMovieDetails(movieResponse.data);
+                // Fetch movie details
+                const movieResponse = await axios.get(
+                    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
+                );
+                setMovieDetails(movieResponse.data);
 
-            // Fetch cast
-            const castResponse = await axios.get(
-                `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`
-            );
-            setCast(castResponse.data.cast);
+                // Fetch cast
+                const castResponse = await axios.get(
+                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`
+                );
+                setCast(castResponse.data.cast);
 
-            // Fetch trailers
-            const trailersResponse = await axios.get(
-                `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`
-            );
-            const limitedTrailers = trailersResponse.data.results
-                .filter(video => video.type === "Trailer" && video.site === "YouTube")
-                .slice(0, 3); // limit to 3 trailers
-            setTrailers(limitedTrailers);
+                // Fetch trailers
+                const trailersResponse = await axios.get(
+                    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`
+                );
+                const limitedTrailers = trailersResponse.data.results
+                    .filter(video => video.type === "Trailer" && video.site === "YouTube")
+                    .slice(0, 3); // limit to 3 trailers
+                setTrailers(limitedTrailers);
 
-            // Fetch where to watch
-            const watchProvidersResponse = await axios.get(
-                `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${API_KEY}`
-            );
-            setWatchProviders(watchProvidersResponse.data.results);
+                // Fetch where to watch
+                const watchProvidersResponse = await axios.get(
+                    `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${API_KEY}`
+                );
+                const providersData = watchProvidersResponse.data.results;
+                setWatchProviders(providersData[country] ? { [country]: providersData[country] } : {}); // Sets country code from browser.
+            } catch (error) {
+                console.error("Failed to fetch movie details:", error);
+                setMovieDetails(null);
+                setCast([]);
+                setTrailers([]);
+                setWatchProviders({});
+            }
         };
 
         fetchMovieDetails();
     }, [movieId]);
 
-    if (!movieDetails) return <div>Loading...</div>;
+    if (!movieDetails) {
+        return (
+            <div className="container mx-auto p-4">
+                <p>Loading Movie details...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="container mx-auto p-4">
             <div className="flex">
                 <img
-                    src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+                    src={movieDetails.poster_path ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+                        : "https://via.placeholder.com/500x750?text=No+Image"}
                     alt={movieDetails.title}
                     className="w-64 h-100 mr-8"
                 />
@@ -63,7 +80,7 @@ const MovieDetails = () => {
 
                     <h3 className="text-xl mt-4">Cast:</h3>
                     <ul>
-                        {cast.slice(0, 5).map((actor) => (
+                        {cast.slice(0, 7).map((actor) => (// Sets the amount of actors to list
                             <li key={actor.id}>{actor.name} as {actor.character}</li>
                         ))}
                     </ul>
@@ -80,7 +97,6 @@ const MovieDetails = () => {
                                         className="w-full h-64"
                                         src={`https://www.youtube.com/embed/${trailer.key}`}
                                         title={trailer.name}
-                                        frameBorder="0"
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
                                     ></iframe>
@@ -95,23 +111,31 @@ const MovieDetails = () => {
                     )}
 
                     <h3 className="text-xl mt-4">Where to Watch:</h3>
-                    {watchProviders.length > 0 ? (
+                    {watchProviders && Object.keys(watchProviders).length > 0 ? (
                         Object.entries(watchProviders).map(([country, data]) => (
                             <div key={country}>
-                                <h4>{country}</h4>
-                                <ul>
+                                <div className="flex gap-4 flex-wrap">
                                     {data.flatrate &&
                                         data.flatrate.map((provider) => (
-                                            <li key={provider.provider_id}>
-                                                {provider.provider_name}
-                                            </li>
-                                        ))}
-                                </ul>
+                                            <div key={provider.provider_id} className="flex flex-col items-center w-20">
+                                                <img
+                                                    src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
+                                                    alt={provider.provider_name}
+                                                    className="w-10 h-10 object-contain"
+                                                />
+                                                <span className="text-xs text-center mt-1">{provider.provider_name}</span>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
                             </div>
                         ))
                     ) : (
                         <p>No streaming services available.</p>
                     )}
+                    <p className="text-sm text-gray-500 mt-2">
+                        Watch provider data powered by <a href="https://www.justwatch.com" target="_blank" rel="noopener noreferrer" className="underline">JustWatch</a>.
+                    </p>
                 </div>
             </div>
         </div>
