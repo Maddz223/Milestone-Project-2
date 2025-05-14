@@ -18,9 +18,8 @@ const TrendingMovies = () => {
         fetchTrendingMovies();
     }, []);
 
-    // Handle movie click to navigate to movie details page
     const handleMovieClick = (movieId) => {
-        navigate(`/movie/${movieId}`); // Navigate to movie details page
+        navigate(`/movie/${movieId}`);
     };
 
     return (
@@ -31,7 +30,7 @@ const TrendingMovies = () => {
                     <div
                         key={movie.id}
                         className="cursor-pointer transform hover:scale-105 transition-all"
-                        onClick={() => handleMovieClick(movie.id)} // Trigger click event
+                        onClick={() => handleMovieClick(movie.id)}
                     >
                         <img
                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -49,6 +48,7 @@ const TrendingMovies = () => {
 // Trending TV Series Component
 const TrendingTV = () => {
     const [trendingTV, setTrendingTV] = useState([]);
+    const navigate = useNavigate(); // Add navigate here
 
     useEffect(() => {
         const fetchTrendingTV = async () => {
@@ -61,12 +61,20 @@ const TrendingTV = () => {
         fetchTrendingTV();
     }, []);
 
+    const handleTVClick = (tvId) => {
+        navigate(`/tv/${tvId}`); // Navigate to TV detail page
+    };
+
     return (
         <div className="container mx-auto p-4">
             <h2 className="text-4xl font-bold mb-4">Trending TV Series</h2>
             <div className="grid grid-cols-4 gap-4">
                 {trendingTV.map((tv) => (
-                    <div key={tv.id} className="cursor-pointer transform hover:scale-105 transition-all">
+                    <div
+                        key={tv.id}
+                        className="cursor-pointer transform hover:scale-105 transition-all"
+                        onClick={() => handleTVClick(tv.id)}
+                    >
                         <img
                             src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`}
                             alt={tv.name}
@@ -80,11 +88,13 @@ const TrendingTV = () => {
     );
 };
 
-// Home Component that includes TrendingMovies and TrendingTV
+// Home Component
 const Home = () => {
     return (
         <div>
-            <h1 className="text-4xl font-bold text-center my-8">Welcome to the Movie and TV Series App</h1>
+            <h1 className="text-4xl font-bold text-center my-8">
+                Welcome to the Movie and TV Series App
+            </h1>
             <TrendingMovies />
             <TrendingTV />
         </div>
