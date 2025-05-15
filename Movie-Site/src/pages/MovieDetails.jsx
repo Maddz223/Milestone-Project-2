@@ -62,97 +62,124 @@ const MovieDetails = () => {
     }
 
     return (
-        <div className="container mx-auto p-4">
-            <div className="flex flex-col lg:flex-row">
+        <div className="container mx-auto px-4 py-6">
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 rounded-lg bg-gray-1001">
                 <img
                     src={movieDetails.poster_path
                         ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
                         : "https://via.placeholder.com/500x750?text=No+Image"}
                     alt={movieDetails.title}
-                    className="w-64 h-100 mr-8 mb-6 lg:mb-0"
+                    className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-2 bg-gray-100 dark:bg-gray-800 shadow hover:shadow-lg transition-shadow duration-300 p-2"
                 />
-                <div className="text-left">
-                    <h2 className="text-4xl font-bold">{movieDetails.title}</h2>
+
+                <div className="flex-1 text-center space-y-4">
+                    <h2 className="text-3xl md:text-4xl font-bold">{movieDetails.title}</h2>
                     <p><strong>Release Date:</strong> {movieDetails.release_date}</p>
                     <p><strong>Rating:</strong> {movieDetails.vote_average} / 10</p>
                     <p><strong>Overview:</strong> {movieDetails.overview}</p>
 
-                    <h3 className="text-xl mt-4">Cast:</h3>
-                    <ul>
-                        {cast.slice(0, 7).map((actor) => (
-                            <li key={actor.id}>{actor.name} as {actor.character}</li>
-                        ))}
-                    </ul>
-
-                    <h3 className="text-xl mt-6 mb-2 font-semibold">Trailers:</h3>
-                    {trailers.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {trailers.map((trailer) => (
+                    <div>
+                        <h3 className="text-xl font-semibold mt-6 mb-2 text-center ">Cast:</h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                            {cast.slice(0, 12).map((actor) => (
                                 <div
-                                    key={trailer.id}
-                                    className="cursor-pointer rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-100 dark:bg-gray-800"
-                                    onClick={() => setSelectedTrailer(trailer)}
+                                    key={actor.id}
+                                    className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2"
                                 >
                                     <img
-                                        src={`https://img.youtube.com/vi/${trailer.key}/hqdefault.jpg`}
-                                        alt={trailer.name}
-                                        className="w-full h-48 object-cover"
+                                        src={
+                                            actor.profile_path
+                                                ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
+                                                : "https://via.placeholder.com/185x278?text=No+Image"
+                                        }
+                                        alt={actor.name}
+                                        className="w-full h-44 object-cover rounded-md mb-2"
                                     />
-                                    <div className="p-2 text-center text-sm font-medium text-gray-700 dark:text-gray-200">
-                                        {trailer.name}
+                                    <div className="text-sm font-medium text-gray-900 dark:text-white">
+                                        {actor.name}
+                                    </div>
+                                    <div className="text-xs text-gray-600 dark:text-gray-400 italic">
+                                        as {actor.character}
                                     </div>
                                 </div>
                             ))}
                         </div>
-                    ) : (
-                        <p className="text-gray-600 dark:text-gray-400">No trailers available.</p>
-                    )}
+                    </div>
 
-                    {/* Modal for trailer */}
-                    {selectedTrailer && (
-                        <TrailerModal
-                            trailer={selectedTrailer}
-                            onClose={() => setSelectedTrailer(null)}
-                        />
-                    )}
-
-                    <h3 className="text-xl mt-6">Where to Watch:</h3>
-                    {watchProviders && Object.keys(watchProviders).length > 0 ? (
-                        Object.entries(watchProviders).map(([country, data]) => (
-                            <div key={country}>
-                                <div className="flex gap-4 flex-wrap mt-2">
-                                    {Array.isArray(data.flatrate) && data.flatrate.length > 0 ? (
-                                        data.flatrate.map((provider) => (
-                                            <div key={provider.provider_id} className="flex flex-col items-center w-20">
-                                                <img
-                                                    src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
-                                                    alt={provider.provider_name}
-                                                    className="w-10 h-10 object-contain"
-                                                />
-                                                <span className="text-xs text-center mt-1">{provider.provider_name}</span>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <span className="text-sm text-gray-500">No streaming providers available.</span>
-                                    )}
-                                </div>
+                    <div>
+                        <h3 className="text-xl mt-6 mb-2 text-center font-semibold">Trailers:</h3>
+                        {trailers.length > 0 ? (
+                            <div className="flex flex-wrap justify-center gap-4">
+                                {trailers.map((trailer) => (
+                                    <div
+                                        key={trailer.id}
+                                        onClick={() => setSelectedTrailer(trailer)}
+                                        className="cursor-pointer bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 w-64"
+                                    >
+                                        <img
+                                            src={`https://img.youtube.com/vi/${trailer.key}/hqdefault.jpg`}
+                                            alt={trailer.name}
+                                            className="w-full h-44 object-cover rounded-md mb-2"
+                                        />
+                                        <div className="text-sm font-medium text-gray-900 dark:text-white">
+                                            {trailer.name}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                        ))
-                    ) : (
-                        <p>No streaming services available.</p>
-                    )}
+                        ) : (
+                            <p className="text-gray-600 text-center dark:text-gray-400">No trailers available.</p>
+                        )}
+                        {selectedTrailer && (
+                            <TrailerModal
+                                trailer={selectedTrailer}
+                                onClose={() => setSelectedTrailer(null)}
+                            />
+                        )}
+                    </div>
 
-                    <p className="text-sm text-gray-500 mt-2">
-                        Watch provider data powered by{" "}
-                        <a
-                            href="https://www.justwatch.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="underline"
-                        >
-                            JustWatch
-                        </a>.
-                    </p>
+                    <div>
+                        <h3 className="text-xl mt-6 text-center font-semibold">Where to Watch:</h3>
+                        {watchProviders && Object.keys(watchProviders).length > 0 ? (
+                            Object.entries(watchProviders).map(([country, data]) => (
+                                <div key={country} className="mt-2 flex justify-center">
+                                    <div className="flex gap-4 flex-wrap justify-center">
+                                        {Array.isArray(data.flatrate) && data.flatrate.length > 0 ? (
+                                            data.flatrate.map((provider) => (
+                                                <div key={provider.provider_id} className="flex flex-col items-center w-20">
+                                                    <img
+                                                        src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
+                                                        alt={provider.provider_name}
+                                                        className="w-10 h-10 object-contain"
+                                                    />
+                                                    <span className="text-xs text-center mt-1">{provider.provider_name}</span>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <span className="text-sm text-gray-500 text-center w-full">
+                                                No streaming providers available.
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-center text-gray-600 dark:text-gray-400 mt-2">
+                                No streaming services available.
+                            </p>
+                        )}
+                        <p className="text-sm text-gray-500 mt-2 text-center">
+                            Watch provider data powered by{" "}
+                            <a
+                                href="https://www.justwatch.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline"
+                            >
+                                JustWatch
+                            </a>.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
