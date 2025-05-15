@@ -7,6 +7,7 @@ import ContactUs from "./pages/ContactUs";
 import Navbar from "./components/Navbar";
 import MovieDetails from "./pages/MovieDetails";
 import TVDetails from './pages/TVDetails';
+import SearchResults from './components/SearchResults';
 
 function App() {
   return (
@@ -17,9 +18,10 @@ function App() {
         <Route path="/movies" element={<Movies />} />{/* Movies Route */}
         <Route path="/tv-series" element={<TVSeries />} />{/* TV Series Route */}
         <Route path="/watchlist" element={<Watchlist />} />{/* Watchlist Route */}
-        <Route path="/contact-us" element={<ContactUs />} />{/* ContractUS Route */}
+        <Route path="/contactus" element={<ContactUs />} />{/* ContractUS Route */}
         <Route path="/movie/:movieId" element={<MovieDetails />} /> {/* Movie Details Route */}
         <Route path="/tv/:tvId" element={<TVDetails />} />{/* TV Series Details Route */}
+        <Route path="/search" element={<SearchResults />} />{/* Search Results Route */}
       </Routes>
     </Router>
   );
