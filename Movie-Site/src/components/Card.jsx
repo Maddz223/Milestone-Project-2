@@ -1,61 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Card = ({ movie, type }) => {
-  const [watchProviders, setWatchProviders] = useState([]);
-  const [region, setRegion] = useState('US'); // Default region
-  
-  useEffect(() => {
-    const fetchWatchProviders = async () => {
-          const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-      const endpoint = type === 'movie' 
-        ? `https://api.themoviedb.org/3/movie/${movie.id}/watch/providers?api_key=${API_KEY}`
-        : `https://api.themoviedb.org/3/tv/${movie.id}/watch/providers?api_key=${API_KEY}`;
-      
-      try {
-        const response = await axios.get(endpoint);
-        const providers = response.data.results?.[region]?.flatrate || [];
-        setWatchProviders(providers);
-      } catch (error) {
-        console.error("Error fetching watch providers:", error);
-      }
-    };
-    fetchWatchProviders();
-  }, [movie.id, region, type]);
+  const imagePath = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    : "https://placehold.co/300x450?text=No+Image&font=roboto";
 
   return (
-    <div className="border rounded-lg overflow-hidden shadow-lg">
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title || movie.name}
-        className="w-full h-64 object-cover"
-      />
-      <div className="p-4">
-        <h3 className="font-semibold">{movie.title || movie.name}</h3>
-        <p>{movie.release_date || movie.first_air_date}</p>
-        <p>{movie.overview}</p>
-
-        {/* Watch Providers */}
-        <div className="mt-2">
-          {watchProviders.length > 0 && (
-            <div>
-              <h4 className="font-semibold">Where to Watch:</h4>
-              <div className="flex space-x-4">
-                {watchProviders.map((provider) => (
-                  <div key={provider.provider_id}>
-                    <img
-                      src={`https://www.themoviedb.org/t/p/w92${provider.logo_path}`}
-                      alt={provider.provider_name}
-                      className="w-12 h-12"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+    <Link to={`/${type}/${movie.id}`}>
+      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 h-[350px]">
+        <img
+          src={imagePath}
+          alt={movie.title || movie.name}
+          className="w-full h-64 object-cover rounded-md mb-2"
+        />
+        <div className="text-sm font-medium text-gray-900 dark:text-white">
+          {movie.title || movie.name}
         </div>
+        {movie.release_date && (
+          <div className="text-xs text-gray-600 dark:text-gray-400">
+            {new Date(movie.release_date).getFullYear()}
+          </div>
+        )}
+        {movie.vote_average !== undefined && (
+          <div className="text-xs text-center text-yellow-600 dark:text-yellow-400 mt-1">
+            ⭐ {movie.vote_average.toFixed(1)} / 10
+          </div>
+        )}
       </div>
-    </div>
+    </Link>
   );
 };
 
