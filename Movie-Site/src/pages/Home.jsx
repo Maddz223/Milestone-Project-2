@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import TrendingTV from "../components/TrendingTV";
-import TrendingMovies from "../components/TrendingMovies";
+import TrendingTV from "../components/PopularTV";
+import TrendingMovies from "../components/PopularMovies";
 
 // Home Component
 const Home = () => {
