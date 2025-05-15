@@ -67,6 +67,7 @@ const MovieDetails = () => {
                         ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
                         : "https://via.placeholder.com/500x750?text=No+Image"}
                     alt={movieDetails.title}
+                    loading="lazy"
                     className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-2 bg-gray-100 dark:bg-gray-800 shadow hover:shadow-lg transition-shadow duration-300 p-2"
                 />
                 {/* Release date, Rating and overview */}
@@ -93,6 +94,7 @@ const MovieDetails = () => {
                                                     : "https://placehold.co/300x450?text=No+Image&font=roboto"
                                             }
                                             alt={actor.name}
+                                            loading="lazy"
                                             className="w-full h-48 object-cover rounded-md mb-2"
                                         />
                                         <div className="flex-1 flex flex-col justify-between">
@@ -122,6 +124,7 @@ const MovieDetails = () => {
                                         <img
                                             src={`https://img.youtube.com/vi/${trailer.key}/hqdefault.jpg`}
                                             alt={trailer.name}
+                                            loading="lazy"
                                             className="w-full h-44 object-cover rounded-md mb-2"
                                         />
                                         <div className="text-sm font-medium text-gray-900 dark:text-white">
@@ -152,6 +155,7 @@ const MovieDetails = () => {
                                                     <img
                                                         src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
                                                         alt={provider.provider_name}
+                                                        loading="lazy"
                                                         className="w-10 h-10 object-contain"
                                                     />
                                                     <span className="text-xs text-center mt-1">{provider.provider_name}</span>
