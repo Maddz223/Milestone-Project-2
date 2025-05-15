@@ -4,4 +4,4 @@ const getCountryCode = () => {
     return match ? match[1] : 'US';
 };
 
-export default { getCountryCode };
+export default getCountryCode;
