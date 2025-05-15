@@ -7,7 +7,7 @@ const Card = ({ movie, type }) => {
 
   return (
     <Link to={`/${type}/${movie.id}`}>
-      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 h-[350px]">
+      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-all duration-300 h-[350px]">
         <img
           src={imagePath}
           alt={movie.title || movie.name}
