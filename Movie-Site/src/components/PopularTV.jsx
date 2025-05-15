@@ -26,8 +26,8 @@ const PopularTV = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-4xl font-bold mb-6 text-center">Trending TV Series</h2>
+    <div className="container mx-auto px-2 py-6">
+      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Trending TV Series</h2>
 
       {PopularTV.length === 0 ? (
         <p className="text-center text-gray-600 dark:text-gray-300">Loading...</p>
@@ -36,8 +36,7 @@ const PopularTV = () => {
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView={5}
-          loop={PopularTV.length > 3}
+          loop={PopularTV.length > 4}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           coverflowEffect={{
             rotate: 30,
@@ -46,13 +45,34 @@ const PopularTV = () => {
             modifier: 1.5,
             slideShadows: true,
           }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1.2,
+              spaceBetween: 10,
+            },
+            480: {
+              slidesPerView: 1.5,
+            },
+            640: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
+            1280: {
+              slidesPerView: 5,
+            },
+          }}
           modules={[EffectCoverflow, Autoplay]}
-          className="w-full max-w-5xl"
+          className="w-full max-w-7xl mx-auto"
         >
           {PopularTV.map((tv) => (
             <SwiperSlide
               key={tv.id}
-              className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-transform duration-300 max-w-[200px]"
+              className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl text-center p-2 cursor-pointer transition-transform transform hover:scale-105 duration-300"
               onClick={() => handleTVClick(tv.id)}
             >
               <img
@@ -63,9 +83,9 @@ const PopularTV = () => {
                 }
                 alt={tv.name}
                 loading="lazy"
-                className="w-full h-64 object-cover rounded-md mb-2"
+                className="w-full h-72 sm:h-80 md:h-96 object-cover rounded-md mb-2"
               />
-              <div className="text-sm font-medium text-gray-900 dark:text-white">
+              <div className="text-sm font-medium text-gray-900 dark:text-white line-clamp-1">
                 {tv.name}
               </div>
               {tv.first_air_date && (
