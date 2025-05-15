@@ -3,11 +3,11 @@ import axios from 'axios';
 import Card from '../components/Card';
 
 const Movies = () => {
-    const [movies, setMovies] = useState([]);
-    const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+  const [movies, setMovies] = useState([]);
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
   useEffect(() => {
     const fetchMovies = async () => {
-      const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
+      const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`);
       setMovies(response.data.results);
     };
     fetchMovies();
@@ -15,8 +15,8 @@ const Movies = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-4">Popular Movies</h1>
-      <div className="grid grid-cols-4 gap-4">
+      <h1 className="text-4xl text-center font-bold mb-4">Discover Movies</h1>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4">
         {movies.map((movie) => (
           <Card key={movie.id} movie={movie} type="movie" />
         ))}
