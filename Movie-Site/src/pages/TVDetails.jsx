@@ -1,46 +1,44 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import { getCountryCode } from "../utils/location";
+import getCountryCode from "../utils/location"; // Location component
+import axios from "axios";// API Handler
 import TrailerModal from "../components/TrailerModal"; // Import the modal component
 
 const TVDetails = () => {
-    const { tvId } = useParams();
-    const [tvDetails, setTvDetails] = useState(null);
-    const [cast, setCast] = useState([]);
-    const [trailers, setTrailers] = useState([]);
-    const [watchProviders, setWatchProviders] = useState([]);
-    const [selectedTrailer, setSelectedTrailer] = useState(null); // Modal state
+    const { tvId } = useParams(); //Tv state
+    const [tvDetails, setTvDetails] = useState(null);// Tv Details state
+    const [cast, setCast] = useState([]);// Cast state
+    const [trailers, setTrailers] = useState([]);// Trailers state
+    const [watchProviders, setWatchProviders] = useState([]);// Watch Providers state
+    const [selectedTrailer, setSelectedTrailer] = useState(null);// Modal state
 
     useEffect(() => {
         const fetchTvDetails = async () => {
+            {/* API Calling */ }
             try {
                 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
                 const country = getCountryCode();
-
+                {/* API call for tvseries */ }
                 const tvResponse = await axios.get(
-                    `https://api.themoviedb.org/3/tv/${tvId}?api_key=${API_KEY}&language=en-US`
-                );
+                    `https://api.themoviedb.org/3/tv/${tvId}?api_key=${API_KEY}&language=en-US`);
                 setTvDetails(tvResponse.data);
-
+                {/* API call for tvseries cast */ }
                 const castResponse = await axios.get(
-                    `https://api.themoviedb.org/3/tv/${tvId}/credits?api_key=${API_KEY}`
-                );
+                    `https://api.themoviedb.org/3/tv/${tvId}/credits?api_key=${API_KEY}`);
                 setCast(castResponse.data.cast);
-
+                {/* API call for tvseries trailers*/ }
                 const trailersResponse = await axios.get(
-                    `https://api.themoviedb.org/3/tv/${tvId}/videos?api_key=${API_KEY}&language=en-US`
-                );
+                    `https://api.themoviedb.org/3/tv/${tvId}/videos?api_key=${API_KEY}&language=en-US`);
                 const limitedTrailers = trailersResponse.data.results
                     .filter(video => video.type === "Trailer" && video.site === "YouTube")
                     .slice(0, 3);
                 setTrailers(limitedTrailers);
-
+                {/* API call for tvseries watch providers */ }
                 const watchProvidersResponse = await axios.get(
-                    `https://api.themoviedb.org/3/tv/${tvId}/watch/providers?api_key=${API_KEY}`
-                );
+                    `https://api.themoviedb.org/3/tv/${tvId}/watch/providers?api_key=${API_KEY}`);
                 const providersData = watchProvidersResponse.data.results;
                 setWatchProviders(providersData[country] ? { [country]: providersData[country] } : {});
+                {/* error catching */ }
             } catch (error) {
                 console.error("Failed to fetch TV details:", error);
                 setTvDetails(null);
@@ -49,10 +47,10 @@ const TVDetails = () => {
                 setWatchProviders({});
             }
         };
-
+        {/* read results and import into Tv Details page */ }
         fetchTvDetails();
     }, [tvId]);
-
+    {/* Tv Loading section */ }
     if (!tvDetails) {
         return (
             <div className="container mx-auto p-4">
@@ -63,48 +61,76 @@ const TVDetails = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 rounded-lg bg-gray-1001">
+                {/* Tv poster */}
                 <img
-                    src={tvDetails.poster_path ? `https://image.tmdb.org/t/p/w500${tvDetails.poster_path}`
+                    src={tvDetails.poster_path
+                        ? `https://image.tmdb.org/t/p/w500${tvDetails.poster_path}`
                         : "https://via.placeholder.com/300x450?text=No+Image"}
                     alt={tvDetails.name}
-                    className="w-64 h-100 mr-8 mb-6 lg:mb-0"
+                    className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-2 bg-gray-100 dark:bg-gray-800 shadow hover:shadow-lg transition-shadow duration-300 p-2"
                 />
-                <div className="text-left">
-                    <h2 className="text-4xl font-bold">{tvDetails.name}</h2>
+                {/* Release date, Rating and overview */}
+                <div className="flex-1 text-center space-y-4">
+                    <h2 className="text-3xl md:text-4xl font-bold">{tvDetails.name}</h2>
                     <p><strong>First Air Date:</strong> {tvDetails.first_air_date}</p>
                     <p><strong>Rating:</strong> {tvDetails.vote_average} / 10</p>
                     <p><strong>Overview:</strong> {tvDetails.overview}</p>
-
-                    <h3 className="text-xl mt-4">Cast:</h3>
-                    <ul>
-                        {cast.slice(0, 7).map((actor) => (
-                            <li key={actor.id}>{actor.name} as {actor.character}</li>
-                        ))}
-                    </ul>
-
-                    <h3 className="text-xl mt-6 mb-2 font-semibold">Trailers:</h3>
+                    {/* Cast Section */}
+                    <div>
+                        <h3 className="text-xl font-semibold mt-6 mb-2 text-center">Cast:</h3>
+                        <div className="flex justify-center">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                                {cast.slice(0, 12).map((actor) => (
+                                    <div
+                                        key={actor.id}
+                                        className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 flex flex-col"
+                                    >
+                                        <img
+                                            src={
+                                                actor.profile_path
+                                                    ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
+                                                    : "https://placehold.co/300x450?text=No+Image&font=roboto"
+                                            }
+                                            alt={actor.name}
+                                            className="w-full h-48 object-cover rounded-md mb-2"
+                                        />
+                                        <div className="flex-1 flex flex-col justify-between">
+                                            <div className="text-sm font-medium text-gray-900 dark:text-white">
+                                                {actor.name}
+                                            </div>
+                                            <div className="text-xs text-gray-600 dark:text-gray-400 italic">
+                                                as {actor.character}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    {/* Trailers section */}
+                    <h3 className="text-xl mt-6 mb-2 text-center font-semibold">Trailers</h3>
                     {trailers.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="flex flex-wrap justify-center gap-4">
                             {trailers.map((trailer) => (
                                 <div
                                     key={trailer.id}
-                                    className="cursor-pointer rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gray-100 dark:bg-gray-800"
+                                    className="cursor-pointer bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 w-64"
                                     onClick={() => setSelectedTrailer(trailer)}
                                 >
                                     <img
                                         src={`https://img.youtube.com/vi/${trailer.key}/hqdefault.jpg`}
                                         alt={trailer.name}
-                                        className="w-full h-48 object-cover"
+                                        className="w-full h-44 object-cover rounded-md mb-2"
                                     />
-                                    <div className="p-2 text-center text-sm font-medium text-gray-700 dark:text-gray-200">
+                                    <div className="text-sm font-medium text-gray-900 dark:text-white">
                                         {trailer.name}
                                     </div>
                                 </div>
                             ))}
                         </div>
                     ) : (
-                        <p className="text-gray-600 dark:text-gray-400">No trailers available.</p>
+                        <p className="text-gray-600 text-center dark:text-gray-400">No trailers available.</p>
                     )}
 
                     {/* Trailer Modal */}
@@ -114,31 +140,45 @@ const TVDetails = () => {
                             onClose={() => setSelectedTrailer(null)}
                         />
                     )}
-
-                    <h3 className="text-xl mt-6">Where to Watch:</h3>
+                    {/* Where to watch section. */}
+                    <h3 className="text-xl mt-6 text-center font-semibold">Where to watch</h3>
                     {watchProviders && Object.keys(watchProviders).length > 0 ? (
                         Object.entries(watchProviders).map(([country, data]) => (
-                            <div key={country}>
-                                <div className="flex gap-4 flex-wrap mt-2">
-                                    {data.flatrate && data.flatrate.map((provider) => (
-                                        <div key={provider.provider_id} className="flex flex-col items-center w-20">
-                                            <img
-                                                src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
-                                                alt={provider.provider_name}
-                                                className="w-10 h-10 object-contain"
-                                            />
-                                            <span className="text-xs text-center mt-1">{provider.provider_name}</span>
-                                        </div>
-                                    ))}
+                            <div key={country} className="mt-2 flex justify-center">
+                                <div className="flex gap-4 flex-wrap justify-center">
+                                    {Array.isArray(data.flatrate) && data.flatrate.length > 0 ? (
+                                        data.flatrate.map((provider) => (
+                                            <div key={provider.provider_id} className="flex flex-col items-center w-20">
+                                                <img
+                                                    src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
+                                                    alt={provider.provider_name}
+                                                    className="w-10 h-10 object-contain"
+                                                />
+                                                <span className="text-xs text-center mt-1">{provider.provider_name}</span>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <span className="text-sm text-gray-500 text-center w-full">
+                                            No streaming providers available.
+                                        </span>
+                                    )}
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <p>No streaming services available.</p>
+                        <p className="text-center text-gray-600 dark:text-gray-400 mt-2">No streaming services available.</p>
                     )}
-                    <p className="text-sm text-gray-500 mt-2">
+                    {/* justwatch */}
+                    <p className="text-sm text-gray-500 mt-2 text-center">
                         Watch provider data powered by{" "}
-                        <a href="https://www.justwatch.com" target="_blank" rel="noopener noreferrer" className="underline">JustWatch</a>.
+                        <a
+                            href="https://www.justwatch.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline"
+                        >
+                            JustWatch
+                        </a>.
                     </p>
                 </div>
             </div>
