@@ -27,7 +27,7 @@ const PopularMovies = () => {
 
   return (
     <div className="container mx-auto px-2 py-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Trending Movies</h2>
+      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Popular Movies</h2>
 
       {PopularMovies.length === 0 ? (
         <p className="text-center text-gray-600 dark:text-gray-300">Loading...</p>

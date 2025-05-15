@@ -27,7 +27,7 @@ const PopularTV = () => {
 
   return (
     <div className="container mx-auto px-2 py-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Trending TV Series</h2>
+      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Popular TV Series</h2>
 
       {PopularTV.length === 0 ? (
         <p className="text-center text-gray-600 dark:text-gray-300">Loading...</p>
