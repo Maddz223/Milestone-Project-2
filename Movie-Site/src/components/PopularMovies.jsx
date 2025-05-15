@@ -3,20 +3,20 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // Function to navigate to movie details page.
-const TrendingMovies = () => {
-    const [trendingMovies, setTrendingMovies] = useState([]);
+const PopularMovies = () => {
+    const [PopularMovies, setPopularMovies] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         // API fetch.
-        const fetchTrendingMovies = async () => {
+        const fetchPopularMovies = async () => {
             const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
             const response = await axios.get(
                 `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
             );
-            setTrendingMovies(response.data.results);
+            setPopularMovies(response.data.results);
         };
-        fetchTrendingMovies();
+        fetchPopularMovies();
     }, []);
 
     // Function to navigate to movie details page after clicking the poster.
@@ -28,7 +28,7 @@ const TrendingMovies = () => {
         <div className="container mx-auto p-4">
   <h2 className="text-4xl font-bold mb-6 text-center">Trending Movies</h2>
   <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4">
-    {trendingMovies.map((movie) => (
+    {PopularMovies.map((movie) => (
       <div
         key={movie.id}
         className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-all duration-300"
@@ -58,4 +58,4 @@ const TrendingMovies = () => {
     );
 };
 
-export default TrendingMovies;
+export default PopularMovies;

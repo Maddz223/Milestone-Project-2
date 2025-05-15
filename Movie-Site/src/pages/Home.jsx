@@ -1,5 +1,5 @@
-import TrendingTV from "../components/PopularTV";
-import TrendingMovies from "../components/PopularMovies";
+import PopularTV from "../components/PopularTV";
+import PopularMovies from "../components/PopularMovies";
 
 // Home Component
 const Home = () => {
@@ -8,8 +8,8 @@ const Home = () => {
             <h1 className="text-5xl font-bold text-center my-8">
                 Welcome to the Movie and TV Series App
             </h1>
-            <TrendingMovies />
-            <TrendingTV />
+            <PopularMovies />
+            <PopularTV />
         </div>
     );
 };

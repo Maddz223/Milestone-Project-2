@@ -28,7 +28,7 @@ const PopularTV = () => {
     <div className="container mx-auto p-4">
       <h2 className="text-4xl font-bold mb-6 text-center">Trending TV Series</h2>
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4">
-        {trendingTV.map((tv) => (
+        {PopularTV.map((tv) => (
           <div
             key={tv.id}
             className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-transform duration-300"
