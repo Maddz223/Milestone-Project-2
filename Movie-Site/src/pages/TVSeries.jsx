@@ -8,7 +8,7 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
   useEffect(() => {
     const fetchTVSeries = async () => {
-      const response = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`);
+      const response = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}`);
       setTvSeries(response.data.results);
     };
     fetchTVSeries();
@@ -16,8 +16,8 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-4">Popular TV Series</h1>
-      <div className="grid grid-cols-4 gap-4">
+      <h1 className="text-4xl text-center font-bold mb-4">Discover TV Series</h1>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4">
         {tvSeries.map((tv) => (
           <Card key={tv.id} movie={tv} type="tv" />
         ))}
