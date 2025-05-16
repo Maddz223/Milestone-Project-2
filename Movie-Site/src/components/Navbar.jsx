@@ -12,6 +12,7 @@ const Navbar = () => {
     { to: "/", label: "Home", exact: true },
     { to: "/movies", label: "Movies" },
     { to: "/tv-series", label: "TV Series" },
+    { to: "/watchlist", label: "Watchlist"},
     { to: "/contactUs", label: "Contact Us" },
   ];
 
