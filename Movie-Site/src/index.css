@@ -7,5 +7,5 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 body, #root {
-  padding-top: 30px; /* match your navbar height */
+  padding-top: 25px; /* match your navbar height */
 }
