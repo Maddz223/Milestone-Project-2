@@ -8,7 +8,7 @@ import "swiper/css/effect-coverflow";
 import SkeletonLoader from "../components/SkeletonLoader";
 
 const PopularTV = () => {
-  const [PopularTV, setPopularTV] = useState([]);
+  const [popularTV, setPopularTV] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,10 +27,10 @@ const PopularTV = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-4xl font-bold mb-6 text-center">Trending TV Series</h2>
+    <div className="container mx-auto px-4 py-6">
+      <h2 className="text-4xl font-bold mb-8 text-center">Trending TV Series</h2>
 
-      {PopularTV.length === 0 ? (
+      {popularTV.length === 0 ? (
         <div className="flex justify-center gap-4 flex-wrap">
           {[...Array(6)].map((_, index) => (
             <SkeletonLoader key={index} />
@@ -38,10 +38,11 @@ const PopularTV = () => {
         </div>
       ) : (
         <Swiper
-          effect={"coverflow"}
+          effect="coverflow"
           grabCursor={true}
           centeredSlides={true}
-          loop={PopularTV.length > 3}
+          slidesPerView={5}
+          loop={popularTV.length > 3}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           coverflowEffect={{
             rotate: 30,
@@ -51,30 +52,17 @@ const PopularTV = () => {
             slideShadows: true,
           }}
           breakpoints={{
-            0: {
-              slidesPerView: 1.2,
-              spaceBetween: 10,
-            },
-            480: {
-              slidesPerView: 1.5,
-            },
-            640: {
-              slidesPerView: 2,
-            },
-            768: {
-              slidesPerView: 3,
-            },
-            1024: {
-              slidesPerView: 4,
-            },
-            1280: {
-              slidesPerView: 5,
-            },
+            0: { slidesPerView: 1.2, spaceBetween: 10 },
+            480: { slidesPerView: 1.5 },
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+            1280: { slidesPerView: 5 },
           }}
           modules={[EffectCoverflow, Autoplay]}
-          className="w-full max-w-5xl"
+          className="w-full max-w-6xl mx-auto"
         >
-          {PopularTV.map((tv, index) => (
+          {popularTV.map((tv, index) => (
             <SwiperSlide
               key={tv.id}
               className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-transform duration-300"
@@ -84,7 +72,7 @@ const PopularTV = () => {
                 loading={index === 0 ? "eager" : "lazy"}
                 src={
                   tv.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${tv.poster_path}`
+                    ? `https://image.tmdb.org/t/p/w342${tv.poster_path}`
                     : "https://placehold.co/300x450?text=No+Image&font=roboto"
                 }
                 alt={tv.name}
