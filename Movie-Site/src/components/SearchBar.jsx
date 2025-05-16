@@ -51,7 +51,7 @@ const SearchBar = () => {
         <input
           type="text"
           placeholder="Search..."
-          className="w-full px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-white focus:outline-none"
+          className="w-full px-6 py-2 rounded-l-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-black dark:text-white focus:outline-none"
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);

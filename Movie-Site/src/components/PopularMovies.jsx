@@ -65,7 +65,7 @@ const PopularMovies = () => {
           {popularMovies.map((movie, index) => (
             <SwiperSlide
               key={movie.id}
-              className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-all duration-300"
+              className="bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-all duration-300"
               onClick={() => handleMovieClick(movie.id)}
             >
               <img
@@ -78,11 +78,11 @@ const PopularMovies = () => {
                 alt={movie.title}
                 className="w-full h-64 object-cover rounded-md mb-2"
               />
-              <div className="text-sm font-medium text-gray-900 dark:text-white">
+              <div className="text-sm font-medium text-black dark:text-white">
                 {movie.title}
               </div>
               {movie.release_date && (
-                <div className="text-xs text-gray-600 dark:text-gray-400">
+                <div className="text-xs text-black dark:text-gray-400">
                   {new Date(movie.release_date).getFullYear()}
                 </div>
               )}

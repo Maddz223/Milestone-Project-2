@@ -65,7 +65,7 @@ const PopularTV = () => {
           {popularTV.map((tv, index) => (
             <SwiperSlide
               key={tv.id}
-              className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-transform duration-300"
+              className="bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-transform duration-300"
               onClick={() => handleTVClick(tv.id)}
             >
               <img
@@ -78,11 +78,11 @@ const PopularTV = () => {
                 alt={tv.name}
                 className="w-full h-64 object-cover rounded-md mb-2"
               />
-              <div className="text-sm font-medium text-gray-900 dark:text-white">
+              <div className="text-sm font-medium text-black dark:text-white">
                 {tv.name}
               </div>
               {tv.first_air_date && (
-                <div className="text-xs text-gray-600 dark:text-gray-400">
+                <div className="text-xs text-black dark:text-gray-400">
                   {new Date(tv.first_air_date).getFullYear()}
                 </div>
               )}
