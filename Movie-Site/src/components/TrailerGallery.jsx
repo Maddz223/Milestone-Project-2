@@ -1,7 +1,7 @@
 const TrailerGallery = ({ trailers, onSelect }) => {
   return (
     <div>
-      <h3 className="text-xl font-semibold mt-6 mb-2">Trailers:</h3>
+      <h3 className="text-xl text-center font-semibold mt-6 mb-2">Trailers:</h3>
       {trailers.length ? (
         <div className="flex flex-wrap justify-center gap-4">
           {trailers.map((trailer) => (
