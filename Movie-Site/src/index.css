@@ -5,9 +5,29 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
-  padding-top: 21px;
+  padding-top: 18px;
   overflow-x: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    padding-top: 160px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    padding-top: 100px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  body {
+    padding-top: 18px;
+  }
 }
