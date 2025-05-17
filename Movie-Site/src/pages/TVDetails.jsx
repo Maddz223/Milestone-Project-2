@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import getCountryCode from "../utils/location";
 
 // Components
 import WatchlistButton from "../components/WatchlistButton";
@@ -10,15 +9,15 @@ import TrailerGallery from "../components/TrailerGallery";
 import TrailerModal from "../components/TrailerModal";
 import WatchProviders from "../components/WatchProviders";
 
+// Context
+import { useWatchlist } from "../context/WatchlistContext";
+
 // Utils
-import {
-  addToWatchlist,
-  removeFromWatchlist,
-  isInWatchlist,
-} from "../utils/watchlist";
+import getCountryCode from "../utils/location";
 
 const TVDetails = () => {
   const { tvId } = useParams();
+  const { addToWatchlist, removeFromWatchlist, isInWatchlist } = useWatchlist();
 
   const [tvDetails, setTvDetails] = useState(null);
   const [cast, setCast] = useState([]);
@@ -66,7 +65,7 @@ const TVDetails = () => {
     if (tvDetails) {
       setInWatchlist(isInWatchlist(tvDetails.id, "tv"));
     }
-  }, [tvDetails]);
+  }, [tvDetails, isInWatchlist]);
 
   const toggleWatchlist = () => {
     if (!tvDetails) return;
@@ -87,38 +86,44 @@ const TVDetails = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 rounded-lg bg-gray-100 dark:bg-gray-900 p-6">
-        {/* Poster + Watchlist */}
-        <div className="flex flex-col items-center">
-          <img
-            src={
-              tvDetails.poster_path
-                ? `https://image.tmdb.org/t/p/w500${tvDetails.poster_path}`
-                : "https://via.placeholder.com/500x750?text=No+Image"
-            }
-            alt={tvDetails.name}
-            className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-4 shadow-lg"
-          />
-          <WatchlistButton inWatchlist={inWatchlist} onToggle={toggleWatchlist} />
-        </div>
+  <div className="container mx-auto px-4 py-6">
+    <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 rounded-lg bg-gray-100 dark:bg-gray-900 p-6">
+      {/* Poster + Watchlist */}
+      <div className="flex flex-col items-center">
+        <img
+          src={
+            tvDetails.poster_path
+              ? `https://image.tmdb.org/t/p/w500${tvDetails.poster_path}`
+              : "https://via.placeholder.com/500x750?text=No+Image"
+          }
+          alt={tvDetails.name}
+          className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-4 shadow-lg"
+        />
+        <WatchlistButton inWatchlist={inWatchlist} onToggle={toggleWatchlist} />
+      </div>
 
-        {/* TV Show Info */}
-        <div className="flex-1 text-center lg:text-left space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold">{tvDetails.name}</h2>
-          <p><strong>First Air Date:</strong> {tvDetails.first_air_date}</p>
-          <p><strong>Rating:</strong> {tvDetails.vote_average} / 10</p>
-          <p><strong>Overview:</strong> {tvDetails.overview}</p>
+      {/* TV Show Info */}
+      <div className="flex-1 flex flex-col items-center text-center space-y-4">
+        <h2 className="text-3xl md:text-4xl font-bold">{tvDetails.name}</h2>
+        <p>
+          <strong>First Air Date:</strong> {tvDetails.first_air_date}
+        </p>
+        <p>
+          <strong>Rating:</strong> {tvDetails.vote_average} / 10
+        </p>
+        <p>
+          <strong>Overview:</strong> {tvDetails.overview}
+        </p>
 
-          <CastList cast={cast} />
-          <TrailerGallery trailers={trailers} onSelect={setSelectedTrailer} />
-          {selectedTrailer && (
-            <TrailerModal trailer={selectedTrailer} onClose={() => setSelectedTrailer(null)} />
-          )}
-          <WatchProviders providers={watchProviders} />
-        </div>
+        <CastList cast={cast} />
+        <TrailerGallery trailers={trailers} onSelect={setSelectedTrailer} />
+        {selectedTrailer && (
+          <TrailerModal trailer={selectedTrailer} onClose={() => setSelectedTrailer(null)} />
+        )}
+        <WatchProviders providers={watchProviders} />
       </div>
     </div>
+  </div>
   );
 };
 
