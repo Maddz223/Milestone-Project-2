@@ -15,7 +15,7 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto pt-15">
       <h1 className="text-4xl text-center font-bold mb-4">Discover TV Series</h1>
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4">
         {tvSeries.map((tv) => (

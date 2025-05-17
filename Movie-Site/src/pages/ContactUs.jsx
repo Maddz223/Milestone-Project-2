@@ -89,7 +89,7 @@ const ContactUs = () => {
   }, [showModal]);
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 px-4 py-12 flex justify-center">
+    <div className="bg-gray-100 dark:bg-gray-900 px-4 py-12 pt-15 flex justify-center">
       <div className="max-w-lg w-full bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
         <h1 className="text-4xl font-bold mb-4 text-center">Contact Us</h1>
         <p className="mb-6 text-center">If you have any questions, feel free to reach out!</p>
