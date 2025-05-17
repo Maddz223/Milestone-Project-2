@@ -16,7 +16,7 @@ const Movies = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl text-center font-bold mb-4">Discover Movies</h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4">
         {movies.map((movie) => (
           <Card key={movie.id} movie={movie} type="movie" />
         ))}
