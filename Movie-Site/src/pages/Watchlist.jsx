@@ -7,7 +7,7 @@ const Watchlist = () => {
 
   if (watchlist.length === 0) {
     return (
-      <div className="container mx-auto p-6 text-center">
+      <div className="container mx-auto p-15 text-center">
         <h2 className="text-2xl font-semibold mb-4">Your Watchlist is Empty</h2>
         <p>Start adding some movies or TV shows!</p>
       </div>
