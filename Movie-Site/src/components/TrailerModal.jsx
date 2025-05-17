@@ -19,7 +19,7 @@ const TrailerModal = ({ trailer, onClose }) => {
         >
             <div
                 ref={modalRef}
-                className="relative bg-white dark:bg-gray-900 rounded-lg p-4 shadow-2xl max-w-fit transform transition-all duration-300 scale-100 animate-fadeIn"
+                className="relative bg-white dark:bg-slate-700 rounded-lg p-4 shadow-2xl max-w-fit transform transition-all duration-300 scale-100 animate-fadeIn"
             >
                 {/* Close button */}
                 <button
