@@ -30,4 +30,12 @@ export default [
       ],
     },
   },
+  {
+    files: ['*.test.js', '*.test.jsx'],
+    languageOptions: {
+      env: {
+        jest: true,
+      },
+    },
+  },
 ]
