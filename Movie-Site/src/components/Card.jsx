@@ -1,17 +1,10 @@
-import { useState, useEffect } from "react";
-import { addToWatchlist, removeFromWatchlist, isInWatchlist } from "../utils/watchlist";
 import { Link } from "react-router-dom";
+import { useWatchlist } from "../context/WatchlistContext";
 
 const Card = ({ movie, type }) => {
-  const imagePath = movie.poster_path
-    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
-    : "https://placehold.co/300x450?text=No+Image&font=roboto";
+  const { addToWatchlist, removeFromWatchlist, isInWatchlist } = useWatchlist();
 
-  const [inWatchlist, setInWatchlist] = useState(false);
-
-  useEffect(() => {
-    setInWatchlist(isInWatchlist(movie.id, type));
-  }, [movie.id, type]);
+  const inWatchlist = isInWatchlist(movie.id, type);
 
   const toggleWatchlist = () => {
     if (inWatchlist) {
@@ -19,24 +12,34 @@ const Card = ({ movie, type }) => {
     } else {
       addToWatchlist({ ...movie, type });
     }
-    setInWatchlist(!inWatchlist);
   };
 
+  const imagePath = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    : "https://placehold.co/300x450?text=No+Image&font=roboto";
+
   return (
-    <div className="relative bg-slate-500  dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2">
-      <Link to={`/${type}/${movie.id}`}>
+    <div className="relative bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 w-full sm:w-48">
+      <Link
+        to={`/${type}/${movie.id}`}
+        aria-label={`View details of ${movie.title || movie.name}`}
+      >
         <img
           src={imagePath}
           alt={movie.title || movie.name}
           className="w-full h-64 object-cover rounded-md mb-2"
+          loading="lazy"
         />
-        <div className="text-sm font-medium text-white">
+        <div className="text-sm font-medium text-white truncate">
           {movie.title || movie.name}
         </div>
       </Link>
       <button
         onClick={toggleWatchlist}
-        className={`mt-2 text-xs font-semibold px-2 py-1 rounded ${inWatchlist ? "bg-red-500 text-white" : "bg-blue-500 text-white"}`}
+        className={`mt-2 text-xs font-semibold px-3 py-1 rounded-full transition-colors duration-200 ${
+          inWatchlist ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"
+        } text-white`}
+        aria-label={inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
       >
         {inWatchlist ? "Remove" : "Add to Watchlist"}
       </button>
