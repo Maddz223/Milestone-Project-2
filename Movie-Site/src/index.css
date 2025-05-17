@@ -3,9 +3,11 @@
 @import "swiper/css/effect-coverflow";
 @import "swiper/css/pagination";
 
-/* Add this line to re-enable class-based dark variant using the new system */
 @custom-variant dark (&:where(.dark, .dark *));
 
-body, #root {
-  padding-top: 25px; /* match your navbar height */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding-top: 21px;
+  overflow-x: hidden;
 }
