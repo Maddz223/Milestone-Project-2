@@ -36,7 +36,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex gap-6 text-gray-700 dark:text-gray-300 text-sm font-semibold">
+        <ul className="hidden md:flex gap-6 text-gray-700 dark:text-gray-300 text-xl font-semibold">
           {links.map(({ to, label, exact }) => {
             const isActive = exact
               ? location.pathname === to
