@@ -5,7 +5,7 @@ const CastList = ({ cast }) => {
     <div className="mt-6">
       <h3 className="text-xl font-semibold mb-4 text-center text-gray-900 dark:text-gray-100">Cast Members</h3>
       <div className="flex flex-wrap justify-center gap-4">
-        {cast.map((actor) => {
+        {cast.slice(0, 8).map((actor) => {
           const imageSrc = actor.profile_path
             ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
             : "https://placehold.co/185x278?text=No+Image&font=roboto";
