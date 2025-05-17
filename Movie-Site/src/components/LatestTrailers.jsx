@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import getCountryCode from "../utils/location";
+
+// Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
+
+// Components
 import TrailerModal from "../components/TrailerModal";
 import SkeletonLoader from "../components/SkeletonLoader";
+
+// Utils
+import getCountryCode from "../utils/location";
 
 const LatestTrailers = () => {
   const [trailers, setTrailers] = useState([]);
