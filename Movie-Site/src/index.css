@@ -10,13 +10,25 @@ body,
 #root {
   height: 100%;
   margin: 0;
-  padding-top: 18px;
+  padding-top: 0px;
   overflow-x: hidden;
+}
+
+@media screen and (min-width: 425px) {
+  body {
+    padding-top: 30px;
+  }
 }
 
 @media screen and (min-width: 768px) {
   body {
-    padding-top: 160px;
+    padding-top: 170px;
+  }
+}
+
+@media screen and (min-width: 803px) {
+  body {
+    padding-top: 120px;
   }
 }
 
@@ -26,8 +38,14 @@ body,
   }
 }
 
+@media screen and (min-width: 1249px) {
+  body {
+    padding-top: 30px;
+  }
+}
+
 @media screen and (min-width: 1440px) {
   body {
-    padding-top: 18px;
+    padding-top: 28px;
   }
 }
