@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Ro
 import { WatchlistProvider } from "./context/WatchlistContext";
 
 // Components
+import ScrollToTop from "./components/ScrollToTop";
 import Navbar from './components/Navbar'; // Navbar import
 import SearchResults from './components/SearchResults'; // SearchResults import
 import Footer from "./components/Footer"; // Footer import
@@ -23,6 +24,7 @@ function App() {
   return (
     <WatchlistProvider>
       <Router>
+        <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
           <Navbar />
           <Suspense fallback={<div className="text-center p-4">Loading...</div>}>
