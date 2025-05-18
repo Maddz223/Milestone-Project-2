@@ -98,7 +98,7 @@ const ContactUs = () => {
           <div className="space-y-6">
             {/* Name Field */}
             <div>
-              <label htmlFor="name" className="block font-semibold mb-1">
+              <label htmlFor="name" className="block  text-center font-semibold mb-1">
                 Name
               </label>
               <input
@@ -123,7 +123,7 @@ const ContactUs = () => {
 
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block font-semibold mb-1">
+              <label htmlFor="email" className="block text-center font-semibold mb-1">
                 Email
               </label>
               <input
@@ -147,7 +147,7 @@ const ContactUs = () => {
 
             {/* Message Field */}
             <div>
-              <label htmlFor="message" className="block font-semibold mb-1">
+              <label htmlFor="message" className="block text-center font-semibold mb-1">
                 Message
               </label>
               <textarea
