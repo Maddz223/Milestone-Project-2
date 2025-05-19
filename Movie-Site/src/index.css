@@ -12,6 +12,12 @@ body,
   padding-top: 0px;
 }
 
+@media screen and (min-width: 320px) {
+  #root {
+    padding-top: 30px;
+  }
+}
+
 @media screen and (min-width: 425px) {
   #root {
     padding-top: 30px;
