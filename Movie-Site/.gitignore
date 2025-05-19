@@ -11,8 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+*.test.jsx
+
 
 # Editor directories and files
+Movie-Site/src/__tests__/*
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -24,4 +27,3 @@ dist-ssr
 *.sw?
 *.env
 *.test.jsx
-Movie-Site\src\__tests__
