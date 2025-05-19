@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useRef } from "r
 
 const WatchlistContext = createContext();
 
+// Custom hook to use the WatchlistContext
 export const WatchlistProvider = ({ children }) => {
   const [watchlist, setWatchlist] = useState(() => {
     if (typeof window !== "undefined") {
@@ -47,13 +48,14 @@ export const WatchlistProvider = ({ children }) => {
     }
   }, [watchlist]);
 
+  // Function to add an item to the watchlist
   const addToWatchlist = (item) => {
     setWatchlist((prev) => {
       if (prev.find((i) => i.id === item.id && i.type === item.type)) return prev;
       return [...prev, item];
     });
   };
-
+  // Function to remove an item from the watchlist
   const removeFromWatchlist = (id, type) => {
     setWatchlist((prev) => prev.filter((i) => i.id !== id || i.type !== type));
   };

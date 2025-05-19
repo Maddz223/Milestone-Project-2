@@ -11,6 +11,7 @@ const Navbar = () => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Define navigation links
   const links = [
     { to: "/", label: "Home", exact: true },
     { to: "/movies", label: "Movies" },
@@ -54,9 +55,10 @@ const Navbar = () => {
           })}
         </ul>
 
-        {/* SearchBar and Dark Mode Toggle */}
+        {/* SearchBar */}
         <div className="hidden md:flex items-center gap-6 flex-grow min-w-[280px] max-w-md">
           <SearchBar />
+          {/* Dark Mode Toggle */}
           <DarkModeToggle />
         </div>
 
@@ -87,8 +89,10 @@ const Navbar = () => {
             ))}
           </ul>
           <div className="w-full">
+            {/* SearchBar for mobile */}
             <SearchBar />
           </div>
+          {/* Dark Mode Toggle for mobile */}
           <DarkModeToggle />
         </div>
       )}

@@ -1,3 +1,4 @@
+// This module provides functions to manage a watchlist in local storage.
 const WATCHLIST_KEY = "watchlist";
 
 export const getWatchlist = () => {

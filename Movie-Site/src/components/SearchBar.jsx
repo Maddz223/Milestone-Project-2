@@ -25,11 +25,13 @@ const SearchBar = () => {
     }
   }, 300); // Waits 300ms before firing API call
 
+  // Effect to handle search input changes
   useEffect(() => {
     handleSearch(query);
     return () => handleSearch.cancel();
   }, [query]);
 
+  // Effect to close suggestions when clicking outside
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim()) {
@@ -37,7 +39,6 @@ const SearchBar = () => {
       setShowSuggestions(false);
     }
   };
-
   const handleSuggestionClick = (suggestion) => {
     navigate(`/${suggestion.media_type}/${suggestion.id}`);
     setQuery('');
@@ -46,6 +47,7 @@ const SearchBar = () => {
   };
 
   return (
+    // Search bar component
     <div className="relative w-full max-w-md">
       <form onSubmit={handleSubmit} className="flex items-center">
         <input
@@ -55,17 +57,15 @@ const SearchBar = () => {
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
-            setShowSuggestions(true);
-          }}
-        />
+            setShowSuggestions(true);}}/>
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition"
-        >
+          className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition">
           Search
         </button>
       </form>
-
+      
+      {/* Suggestions dropdown */}
       {showSuggestions && suggestions.length > 0 && (
         <ul className="absolute z-10 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md mt-1 shadow-lg">
           {suggestions.map((item) => (
