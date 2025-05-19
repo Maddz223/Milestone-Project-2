@@ -4,6 +4,10 @@ import { useWatchlist } from "../context/WatchlistContext";
 const Card = ({ movie, type }) => {
   const { addToWatchlist, removeFromWatchlist, isInWatchlist } = useWatchlist();
 
+  if (!movie || !type) {
+    return null;
+  }
+
   const inWatchlist = isInWatchlist(movie.id, type);
 
   const toggleWatchlist = () => {
@@ -26,12 +30,12 @@ const Card = ({ movie, type }) => {
       >
         <img
           src={imagePath}
-          alt={movie.title || movie.name}
+          alt={movie.title || movie.name || "No Title"}
           className="w-full h-64 object-cover rounded-md mb-2"
           loading="lazy"
         />
         <div className="text-sm font-medium text-white truncate">
-          {movie.title || movie.name}
+          {movie.title || movie.name || "No Title"}
         </div>
       </Link>
       <button
