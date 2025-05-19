@@ -109,14 +109,15 @@ const ContactUs = () => {
                 id="name"
                 name="name"
                 type="text"
+                autoComplete="name"
                 value={formData.name}
                 onChange={handleChange}
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? "name-error" : undefined}
                 ref={nameInputRef}
-                className={`w-full p-2 border rounded ${errors.name ? "border-red-500" : "border-gray-300"
-                  }`}
-              />
+                placeholder="Enter your name"
+                className={`w-full px-4 py-2 rounded-md border bg-white text-gray-900 border-gray-400 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:placeholder-gray-400
+                ${errors.name ? "border-red-500" : ""}`} />
               {errors.name && (
                 <p id="name-error" className="text-red-600 text-sm mt-1">
                   {errors.name}
@@ -133,13 +134,14 @@ const ContactUs = () => {
                 id="email"
                 name="email"
                 type="email"
+                autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? "email-error" : undefined}
-                className={`w-full p-2 border rounded ${errors.email ? "border-red-500" : "border-gray-300"
-                  }`}
-              />
+                placeholder="you@example.com"
+                className={`w-full px-4 py-2 rounded-md border bg-white text-gray-900 border-gray-400 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:placeholder-gray-400
+                ${errors.email ? "border-red-500" : ""}`}/>
               {errors.email && (
                 <p id="email-error" className="text-red-600 text-sm mt-1">
                   {errors.email}
@@ -156,13 +158,14 @@ const ContactUs = () => {
                 id="message"
                 name="message"
                 rows="5"
+                autoComplete="off"
                 value={formData.message}
                 onChange={handleChange}
                 aria-invalid={!!errors.message}
                 aria-describedby={errors.message ? "message-error" : undefined}
-                className={`w-full p-2 border rounded ${errors.message ? "border-red-500" : "border-gray-300"
-                  }`}
-              />
+                placeholder="Write your message here..."
+                className={`w-full px-4 py-2 rounded-md border bg-white text-gray-900 border-gray-400 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:placeholder-gray-400
+                ${errors.message ? "border-red-500" : ""}`}/>
               {errors.message && (
                 <p id="message-error" className="text-red-600 text-sm mt-1">
                   {errors.message}
