@@ -24,6 +24,19 @@
   <link rel="icon" type="image/png" sizes="512x512" href="./src/assets/favicon/android-chrome-512x512.png">
 
   <title>What2Watch</title>
+  
+  <!-- Preload darkmode before react mounts -->
+  <script>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (theme === "dark" || (!theme && prefersDark)) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      })();
+    </script>
 </head>
 
 <body>

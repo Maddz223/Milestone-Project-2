@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { debounce } from 'lodash';
@@ -10,25 +10,37 @@ const SearchBar = () => {
   const navigate = useNavigate();
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-  const handleSearch = debounce(async (searchTerm) => {
-    if (!searchTerm.trim()) {
-      setSuggestions([]);
-      return;
-    }
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${searchTerm}`
-      );
-      setSuggestions(response.data.results.slice(0, 5)); // Sets the suggested limits to 5
-    } catch (err) {
-      console.error('Suggestion fetch error:', err);
-    }
-  }, 300); // Waits 300ms before firing API call
+  // Use useRef to persist the debounced function
+  const handleSearchRef = useRef();
+
+  useEffect(() => {
+    handleSearchRef.current = debounce(async (searchTerm) => {
+      if (!searchTerm.trim()) {
+        setSuggestions([]);
+        return;
+      }
+      try {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${searchTerm}`
+        );
+        setSuggestions(response.data.results.slice(0, 5)); // Sets the suggested limits to 5
+      } catch (err) {
+        console.error('Suggestion fetch error:', err);
+      }
+    }, 300);
+    return () => {
+      handleSearchRef.current && handleSearchRef.current.cancel();
+    };
+  }, [API_KEY]);
 
   // Effect to handle search input changes
   useEffect(() => {
-    handleSearch(query);
-    return () => handleSearch.cancel();
+    if (handleSearchRef.current) {
+      handleSearchRef.current(query);
+    }
+    return () => {
+      if (handleSearchRef.current) handleSearchRef.current.cancel();
+    };
   }, [query]);
 
   // Effect to close suggestions when clicking outside
@@ -50,7 +62,9 @@ const SearchBar = () => {
     // Search bar component
     <div className="relative w-full max-w-md">
       <form onSubmit={handleSubmit} className="flex items-center">
+        <label htmlFor="search-input" className="sr-only">Search</label>
         <input
+          id="search-input"
           type="text"
           placeholder="Search..."
           className="w-full px-6 py-2 rounded-l-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-black dark:text-white focus:outline-none"
@@ -72,9 +86,9 @@ const SearchBar = () => {
             <li
               key={item.id}
               onClick={() => handleSuggestionClick(item)}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer text-white text-sm"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer text-black dark:text-white text-sm"
             >
-              {item.title || item.name} <span className="text-xs text-gray-500">({item.media_type})</span>
+              {item.title || item.name} <span className="text-xs text-gray-500 dark:text-gray-400">({item.media_type})</span>
             </li>
           ))}
         </ul>
