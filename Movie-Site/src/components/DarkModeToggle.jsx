@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// DarkModeToggle component to toggle between light and dark themes
 const DarkModeToggle = () => {
   const [isDark, setIsDark] = useState(false);
 
-  // Check local storage for the theme preference on initial load
+  // Initialize theme based on localStorage or system preference
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
-    setIsDark(storedTheme === "dark");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDark(storedTheme === "dark" || (!storedTheme && prefersDark));
   }, []);
 
-  // Update the document class and local storage whenever the theme changes
+  // Update document class and localStorage when theme changes
   useEffect(() => {
+    const root = document.documentElement;
     if (isDark) {
-      document.documentElement.classList.add("dark");
+      root.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      root.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
   }, [isDark]);
-  const toggleDarkMode = () => {
-    setIsDark(!isDark);
-  };
+
+  const toggleDarkMode = () => setIsDark((prev) => !prev);
 
   return (
     // Button to toggle dark mode
@@ -31,8 +31,9 @@ const DarkModeToggle = () => {
       onClick={toggleDarkMode}
       aria-label="Toggle Dark Mode"
       aria-pressed={isDark}
+      title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
       className="p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition relative w-10 h-10 flex items-center justify-center">
-      {/* AnimatePresence from Framer Motion to handle the animation of the icons */}
+      {/* Animated SVG icons for sun and moon */}
       <AnimatePresence mode="wait" initial={false}>
         {isDark ? (
           // Sun icon for light mode
@@ -69,13 +70,11 @@ const DarkModeToggle = () => {
             initial={{ opacity: 0, scale: 0.8, rotate: 90 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             exit={{ opacity: 0, scale: 0.8, rotate: -90 }}
-            transition={{ duration: 0.3 }}
-          >
+            transition={{ duration: 0.3 }}>
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"
-            />
+              d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
           </motion.svg>
         )}
       </AnimatePresence>
