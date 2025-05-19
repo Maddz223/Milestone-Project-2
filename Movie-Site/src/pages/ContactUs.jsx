@@ -87,7 +87,6 @@ const ContactUs = () => {
         }
       }
     };
-
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [showModal]);
@@ -98,6 +97,7 @@ const ContactUs = () => {
         <h1 className="text-4xl font-bold mb-4 text-center">Contact Us</h1>
         <p className="mb-6 text-center">If you have any questions, feel free to reach out!</p>
 
+        {/* Form */}
         <form onSubmit={handleSubmit} noValidate>
           <div className="space-y-6">
             {/* Name Field */}
@@ -171,6 +171,7 @@ const ContactUs = () => {
             </div>
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition w-full"
@@ -204,9 +205,11 @@ const ContactUs = () => {
             <h2 id="modal-title" className="text-2xl font-semibold mb-4 text-green-600">
               Success!
             </h2>
-            <p id="modal-desc" className="mb-6">
+            <p id="modal-desc" className="mb-3">
               Thank you for contacting us! We will get back to you soon.
             </p>
+            <p className="mb-6">
+              If you have any further questions, feel free to reach out again.</p>
             <button
               ref={closeButtonRef}
               onClick={closeModal}

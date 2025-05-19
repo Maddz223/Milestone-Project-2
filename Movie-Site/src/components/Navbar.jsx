@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+
+// Components
 import SearchBar from "./SearchBar";
 import DarkModeToggle from "./DarkModeToggle";
-import { Menu, X } from "lucide-react";
+
 
 const Navbar = () => {
   const location = useLocation();
@@ -30,7 +33,7 @@ const Navbar = () => {
           What2Watch
         </Link>
 
-        {/* Navigation Links (hidden on small screens) */}
+        {/* Navigation Links */}
         <ul className="hidden md:flex gap-8 text-gray-700 dark:text-gray-300 text-xl font-semibold flex-shrink-0">
           {links.map(({ to, label, exact }) => {
             const isActive = exact
@@ -51,7 +54,7 @@ const Navbar = () => {
           })}
         </ul>
 
-        {/* Search + Dark Mode Toggle (desktop only) */}
+        {/* SearchBar and Dark Mode Toggle */}
         <div className="hidden md:flex items-center gap-6 flex-grow min-w-[280px] max-w-md">
           <SearchBar />
           <DarkModeToggle />

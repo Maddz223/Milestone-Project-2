@@ -5,12 +5,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
+
+// Components
 import SkeletonLoader from "../components/SkeletonLoader";
 
 const PopularTV = () => {
   const [popularTV, setPopularTV] = useState([]);
   const navigate = useNavigate();
 
+  // Fetch popular TV series from TMDB API
   useEffect(() => {
     const fetchPopularTV = async () => {
       const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -21,7 +24,7 @@ const PopularTV = () => {
     };
     fetchPopularTV();
   }, []);
-
+  // Handle TV series click to navigate to details page of TV series.
   const handleTVClick = (tvId) => {
     navigate(`/tv/${tvId}`);
   };
@@ -30,6 +33,7 @@ const PopularTV = () => {
     <div className="container mx-auto px-4 py-6">
       <h2 className="text-4xl font-bold mb-8 text-center">Trending TV Series</h2>
 
+      {/* Skeleton loader for loading state */}
       {popularTV.length === 0 ? (
         <div className="flex justify-center gap-4 flex-wrap">
           {[...Array(6)].map((_, index) => (
@@ -37,6 +41,7 @@ const PopularTV = () => {
           ))}
         </div>
       ) : (
+        // Swiper carousel for displaying popular TV series
         <Swiper
           effect="coverflow"
           grabCursor={true}
@@ -51,6 +56,7 @@ const PopularTV = () => {
             modifier: 1.2,
             slideShadows: true,
           }}
+          // Responsive breakpoints for different screen sizes
           breakpoints={{
             0: { slidesPerView: 1.2, spaceBetween: 10 },
             480: { slidesPerView: 1.5 },
@@ -60,14 +66,13 @@ const PopularTV = () => {
             1280: { slidesPerView: 5 },
           }}
           modules={[EffectCoverflow, Autoplay]}
-          className="w-full max-w-6xl mx-auto"
-        >
+          className="w-full max-w-6xl mx-auto">
           {popularTV.map((tv, index) => (
             <SwiperSlide
               key={tv.id}
               className="bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-transform duration-300"
-              onClick={() => handleTVClick(tv.id)}
-            >
+              onClick={() => handleTVClick(tv.id)}>
+              {/* TV series poster */}
               <img
                 loading={index === 0 ? "eager" : "lazy"}
                 src={
@@ -76,11 +81,12 @@ const PopularTV = () => {
                     : "https://placehold.co/300x450?text=No+Image&font=roboto"
                 }
                 alt={tv.name}
-                className="w-full h-64 object-cover rounded-md mb-2"
-              />
+                className="w-full h-64 object-cover rounded-md mb-2"/>
+              {/* TV series title */}
               <div className="text-sm font-medium text-black dark:text-white">
                 {tv.name}
               </div>
+              {/* TV series first air date */}
               {tv.first_air_date && (
                 <div className="text-xs text-black dark:text-gray-400">
                   {new Date(tv.first_air_date).getFullYear()}

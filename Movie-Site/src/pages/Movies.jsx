@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
+// Components
 import Card from '../components/Card';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
   useEffect(() => {
+    // Fetch movies from TMDB API
     const fetchMovies = async () => {
       const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`);
-      setMovies(response.data.results);
-    };
+      setMovies(response.data.results);};
     fetchMovies();
   }, []);
 

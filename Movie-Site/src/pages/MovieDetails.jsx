@@ -15,6 +15,18 @@ import { useWatchlist } from "../context/WatchlistContext";
 // Utils
 import getCountryCode from "../utils/location";
 
+// Localized date formatter
+const formatLocalizedDate = (dateString) => {
+  if (!dateString) return "N/A";
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat(undefined, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+};
+
+// MovieDetails component to fetch and display movie details
 const MovieDetails = () => {
   const { movieId } = useParams();
   const { addToWatchlist, removeFromWatchlist, isInWatchlist } = useWatchlist();
@@ -26,6 +38,7 @@ const MovieDetails = () => {
   const [selectedTrailer, setSelectedTrailer] = useState(null);
   const [inWatchlist, setInWatchlist] = useState(false);
 
+  // Fetch movie details, cast, trailers, and watch providers
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
@@ -65,16 +78,16 @@ const MovieDetails = () => {
     fetchMovieDetails();
   }, [movieId]);
 
-  // Update watchlist status when movieDetails or watchlist changes
+  // Check if the TV show is in the watchlist
   useEffect(() => {
     if (movieDetails) {
       setInWatchlist(isInWatchlist(movieDetails.id, "movie"));
     }
   }, [movieDetails, isInWatchlist]);
 
+  // Toggle watchlist status
   const toggleWatchlist = () => {
     if (!movieDetails) return;
-
     if (inWatchlist) {
       removeFromWatchlist(movieDetails.id, "movie");
       setInWatchlist(false);
@@ -84,6 +97,7 @@ const MovieDetails = () => {
     }
   };
 
+  // Check if movie details are available
   if (!movieDetails) {
     return (
       <div className="container mx-auto p-4 text-center">
@@ -95,7 +109,7 @@ const MovieDetails = () => {
   return (
     <div className="container mx-auto px-4 py-6">
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 rounded-lg bg-gray-100 dark:bg-gray-900 p-6">
-        {/* Poster + Watchlist */}
+        {/* Movie Poster*/}
         <div className="flex flex-col items-center">
           <img
             src={
@@ -104,31 +118,30 @@ const MovieDetails = () => {
                 : "https://via.placeholder.com/500x750?text=No+Image"
             }
             alt={movieDetails.title}
-            className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-4 shadow-lg"
-          />
+            className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-4 shadow-lg" />
+          {/* Add to Watchlist button */}
           <WatchlistButton inWatchlist={inWatchlist} onToggle={toggleWatchlist} />
         </div>
 
         {/* Movie Info */}
-<div className="flex-1 flex flex-col items-center text-center space-y-4">
-  <h2 className="text-3xl md:text-4xl font-bold">{movieDetails.title}</h2>
-  <p>
-    <strong>Release Date:</strong> {movieDetails.release_date}
-  </p>
-  <p>
-    <strong>Rating:</strong> {movieDetails.vote_average} / 10
-  </p>
-  <p>
-    <strong>Overview:</strong> {movieDetails.overview}
-  </p>
-
-  <CastList cast={cast} />
-  <TrailerGallery trailers={trailers} onSelect={setSelectedTrailer} />
-  {selectedTrailer && (
-    <TrailerModal trailer={selectedTrailer} onClose={() => setSelectedTrailer(null)} />
-  )}
-  <WatchProviders providers={watchProviders} />
-</div>
+        <div className="flex-1 flex flex-col items-center text-center space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold">{movieDetails.title}</h2>
+          <p>
+            <strong>Release Date:</strong> {formatLocalizedDate(movieDetails.release_date)}
+          </p>
+          <p>
+            <strong>Rating:</strong> {movieDetails.vote_average} / 10
+          </p>
+          <p>
+            <strong>Overview:</strong> {movieDetails.overview}
+          </p>
+          <CastList cast={cast} />
+          <TrailerGallery trailers={trailers} onSelect={setSelectedTrailer} />
+          {selectedTrailer && (
+            <TrailerModal trailer={selectedTrailer} onClose={() => setSelectedTrailer(null)} />
+          )}
+          <WatchProviders providers={watchProviders} />
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
+// Components
 import Card from '../components/Card';
 
 const TVSeries = () => {
 const [tvSeries, setTvSeries] = useState([]);
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
+  // Fetch TV series from TMDB API
   useEffect(() => {
     const fetchTVSeries = async () => {
       const response = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}`);

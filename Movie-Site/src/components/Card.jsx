@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+
+// Context
 import { useWatchlist } from "../context/WatchlistContext";
 
 const Card = ({ movie, type }) => {
@@ -38,13 +40,12 @@ const Card = ({ movie, type }) => {
           {movie.title || movie.name || "No Title"}
         </div>
       </Link>
+      {/* Add to Watchlist button */}
       <button
         onClick={toggleWatchlist}
-        className={`mt-2 text-xs font-semibold px-3 py-1 rounded-full transition-colors duration-200 ${
-          inWatchlist ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"
-        } text-white`}
-        aria-label={inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
-      >
+        className={`mt-2 text-xs font-semibold px-3 py-1 rounded-full transition-colors duration-200 ${inWatchlist ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"
+          } text-white`}
+        aria-label={inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}>
         {inWatchlist ? "Remove" : "Add to Watchlist"}
       </button>
     </div>

@@ -16,15 +16,12 @@ const Home = () => {
         collections, stay updated with trending hits, and create your personal watchlist to never miss a moment of great
         entertainment. Sit back, relax, and let What2Watch guide you to your next favorite story. Happy watching!
       </p>
-
       <section className="mb-8">
         <LatestTrailers />
       </section>
-
       <section className="mb-8">
         <PopularMovies />
       </section>
-
       <section className="mb-8">
         <PopularTV />
       </section>
