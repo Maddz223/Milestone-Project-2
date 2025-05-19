@@ -22,13 +22,19 @@ const TVDetails = lazy(() => import('./pages/TVDetails'));
 
 function App() {
   return (
+    // Wrap the app with the WatchlistProvider to provide the watchlist context
     <WatchlistProvider>
+      {/* Use BrowserRouter to handle routing */}
       <Router>
+        {/* ScrollToTop component to scroll to the top of the page on route change */}
         <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
+          {/* Navbar component for navigation */}
           <Navbar />
+          {/* Suspense to handle lazy loading of components */}
           <Suspense fallback={<div className="text-center p-4">Loading...</div>}>
             <main className="flex-grow">
+              {/* Define routes for the application */}
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/movies" element={<Movies />} />
