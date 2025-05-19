@@ -17,15 +17,15 @@ const Home = () => {
         entertainment. Sit back, relax, and let What2Watch guide you to your next favorite story. Happy watching!
       </p>
 
-      <section className="mb-16">
+      <section className="mb-8">
         <LatestTrailers />
       </section>
 
-      <section className="mb-16">
+      <section className="mb-8">
         <PopularMovies />
       </section>
 
-      <section className="mb-16">
+      <section className="mb-8">
         <PopularTV />
       </section>
     </div>
