@@ -7,7 +7,6 @@ const ScrollToTop = () => {
 
   // Effect to scroll to the top of the page when the pathname changes
   useEffect(() => {
-    console.log("Scrolling to top for:", pathname);
     window.scrollTo({ top: 0, behavior: "smooth" });;
   }, [pathname]);
 
