@@ -78,7 +78,7 @@ const MovieDetails = () => {
     fetchMovieDetails();
   }, [movieId]);
 
-  // Check if the TV show is in the watchlist
+  // Check if the Movie is in the watchlist
   useEffect(() => {
     if (movieDetails) {
       setInWatchlist(isInWatchlist(movieDetails.id, "movie"));
@@ -115,7 +115,7 @@ const MovieDetails = () => {
             src={
               movieDetails.poster_path
                 ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
-                : "https://via.placeholder.com/500x750?text=No+Image"
+                : "https://placehold.co/185x278?text=No+Image&font=roboto"
             }
             alt={movieDetails.title}
             className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-4 shadow-lg" />
