@@ -22,12 +22,12 @@ const TrailerModal = ({ trailer, onClose }) => {
             {/* Stops clicks inside the modal closing it */}
             <div
                 ref={modalRef}
-                className="relative bg-white dark:bg-slate-700 rounded-lg p-4 shadow-2xl max-w-fit transform transition-all duration-300 scale-100 animate-fadeIn"
+                className="relative bg-gray-800 dark:bg-slate-700 rounded-lg p-4 shadow-2xl max-w-fit transform transition-all duration-300 scale-100 animate-fadeIn"
                 onClick={e => e.stopPropagation()}>
                 {/* Close button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 text-gray-500 hover:text-red-600 text-xl font-bold"
+                    className="absolute top-2 right-2 text-white hover:text-red-600 text-xl font-bold"
                     aria-label="Close"
                 >
                     &times;
@@ -45,7 +45,7 @@ const TrailerModal = ({ trailer, onClose }) => {
                 </div>
 
                 {/* Trailer title (optional) */}
-                <div className="mt-2 text-center text-sm text-gray-700 dark:text-gray-300">
+                <div className="mt-2 text-center text-sm text-white">
                     {trailer.name}
                 </div>
             </div>
