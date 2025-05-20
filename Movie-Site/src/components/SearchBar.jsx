@@ -67,7 +67,7 @@ const SearchBar = () => {
           id="search-input"
           type="text"
           placeholder="Search..."
-          className="w-full px-6 py-2 rounded-l-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-black dark:text-white focus:outline-none"
+          className="w-full px-6 py-2 rounded-l-md border border-gray-500 dark:border-gray-700 bg-gray-300 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
@@ -81,7 +81,7 @@ const SearchBar = () => {
       
       {/* Suggestions dropdown */}
       {showSuggestions && suggestions.length > 0 && (
-        <ul className="absolute z-10 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md mt-1 shadow-lg">
+        <ul className="absolute z-10 w-full bg-gray-300 dark:bg-gray-800 border border-gray-500 dark:border-gray-700 rounded-md mt-1 shadow-lg">
           {suggestions.map((item) => (
             <li
               key={item.id}
