@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'; // Use HashRouter here
 
 // Context
 import { WatchlistProvider } from "./context/WatchlistContext";
@@ -10,7 +10,7 @@ import Navbar from './components/Navbar';
 import SearchResults from './components/SearchResults';
 import Footer from "./components/Footer";
 
-// Lazy Imports
+// Lazy loaded pages
 const Home = lazy(() => import('./pages/Home'));
 const Movies = lazy(() => import('./pages/Movies'));
 const TVSeries = lazy(() => import('./pages/TVSeries'));
@@ -22,7 +22,7 @@ const TVDetails = lazy(() => import('./pages/TVDetails'));
 function App() {
   return (
     <WatchlistProvider>
-      <Router basename="/Milestone-Project-2/">
+      <Router>
         <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
           <Navbar />
