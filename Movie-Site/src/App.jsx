@@ -22,7 +22,7 @@ const TVDetails = lazy(() => import('./pages/TVDetails'));
 function App() {
   return (
     <WatchlistProvider>
-      <Router basename="/Milestone-Project-2">
+      <Router basename="/Milestone-Project-2/">
         <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
           <Navbar />
