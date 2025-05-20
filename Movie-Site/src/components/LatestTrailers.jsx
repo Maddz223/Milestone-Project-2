@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Autoplay } from "swiper/modules";
+
+// Styles
+import "../FixSwipers.css";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
+// Components
 import SkeletonLoader from "../components/SkeletonLoader";
-import TrailerModal from "../components/TrailerModal"; // import your modal component
+import TrailerModal from "../components/TrailerModal";
 
 // Fetch trending movies (latest trailers)
 const fetchLatestTrailers = async (API_KEY) => {
@@ -70,7 +74,7 @@ const LatestTrailers = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="latest-trailers container mx-auto px-4 py-6 relative overflow-x-hidden overflow-y-visible">
       <h2 className="text-4xl font-bold mb-8 text-center">Latest Trailers</h2>
 
       {loading ? (
@@ -107,40 +111,40 @@ const LatestTrailers = () => {
               1280: { slidesPerView: 5 },
             }}
             modules={[EffectCoverflow, Autoplay]}
-            className="w-full max-w-6xl mx-auto"
+            className="w-full max-w-6xl mx-auto overflow-x-hidden relative"
           >
             {trailers.map((trailer, i) => (
-              <SwiperSlide
-                key={trailer.id}
-                title={trailer.title || trailer.name}
-                onClick={() => handleTrailerClick(trailer)}
-                style={{ contain: "layout" }}
-                className="bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg cursor-pointer p-2 transform hover:scale-105 transition-all duration-300"
-              >
-                <img
-                  srcSet={
-                    trailer.poster_path
-                      ? `https://image.tmdb.org/t/p/w342${trailer.poster_path}`
-                      : "https://placehold.co/300x450?text=No+Image"
-                  }
-                  alt={`${trailer.title || trailer.name} poster`}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  fetchPriority={i === 0 ? "high" : "auto"}
-                  sizes="(max-width: 600px) 185px, 342px"
-                  width={342}
-                  height={513}
-                  className="object-cover rounded-md mb-2 w-full h-full"
-                />
-                <div className="text-sm text-center font-semibold text-black dark:text-white">
-                  {trailer.title || trailer.name}
-                </div>
-                <div className="text-xs text-center text-black dark:text-gray-300">
-                  {trailer.release_date?.slice(0, 4) || trailer.first_air_date?.slice(0, 4)}
+              <SwiperSlide key={trailer.id} className="overflow-visible relative z-10">
+                <div
+                  onClick={() => handleTrailerClick(trailer)}
+                  className="relative group transition-transform duration-300 ease-in-out"
+                >
+                  <div className="bg-slate-500 dark:bg-gray-800 rounded-lg shadow cursor-pointer p-2 relative group-hover:z-50 group-hover:-translate-y-3 group-hover:scale-[1.03] transition-all duration-300">
+                    <img
+                      srcSet={
+                        trailer.poster_path
+                          ? `https://image.tmdb.org/t/p/w342${trailer.poster_path}`
+                          : "https://placehold.co/300x450?text=No+Image"
+                      }
+                      alt={`${trailer.title || trailer.name} poster`}
+                      loading={i === 0 ? "eager" : "lazy"}
+                      fetchPriority={i === 0 ? "high" : "auto"}
+                      sizes="(max-width: 600px) 185px, 342px"
+                      width={342}
+                      height={513}
+                      className="object-cover rounded-md mb-2 w-full h-full"
+                    />
+                    <div className="text-sm text-center font-semibold text-black dark:text-white">
+                      {trailer.title || trailer.name}
+                    </div>
+                    <div className="text-xs text-center text-black dark:text-gray-300">
+                      {trailer.release_date?.slice(0, 4) || trailer.first_air_date?.slice(0, 4)}
+                    </div>
+                  </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-
           {/* Trailer Modal */}
           {selectedTrailer && (
             <TrailerModal trailer={selectedTrailer} onClose={() => setSelectedTrailer(null)} />
