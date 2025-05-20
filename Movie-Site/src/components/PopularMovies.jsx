@@ -6,49 +6,64 @@ import { EffectCoverflow, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
-// Components
 import SkeletonLoader from "../components/SkeletonLoader";
 
-// This component fetches and displays popular movies from TMDB API
+const fetchPopularMovies = async (API_KEY) => {
+  const response = await axios.get("https://api.themoviedb.org/3/movie/popular", {
+    params: { api_key: API_KEY },
+  });
+  return response.data.results;
+};
+
 const PopularMovies = () => {
-  const [popularMovies, setPopularMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch popular movies from TMDB API
   useEffect(() => {
-    const fetchPopularMovies = async () => {
-      const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
-      );
-      setPopularMovies(response.data.results);
+    const loadMovies = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+        const popularMovies = await fetchPopularMovies(API_KEY);
+        setMovies(popularMovies);
+      } catch {
+        setError("Failed to fetch popular movies.");
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchPopularMovies();
+
+    loadMovies();
   }, []);
-  // Handle movie click to navigate to details page of movie.
-  const handleMovieClick = (movieId) => {
-    navigate(`/movie/${movieId}`);
+
+  const handleMovieClick = (id) => {
+    navigate(`/movie/${id}`);
   };
 
   return (
     <div className="container mx-auto px-4 py-6">
       <h2 className="text-4xl font-bold mb-8 text-center">Trending Movies</h2>
 
-      {/* Skeleton loader for loading state */}
-      {popularMovies.length === 0 ? (
+      {loading ? (
         <div className="flex justify-center gap-4 flex-wrap">
-          {[...Array(6)].map((_, index) => (
-            <SkeletonLoader key={index} />
+          {Array.from({ length: 6 }).map((_, i) => (
+            <SkeletonLoader key={i} />
           ))}
         </div>
+      ) : error ? (
+        <p className="text-center text-red-600">{error}</p>
+      ) : movies.length === 0 ? (
+        <p className="text-center">No popular movies found.</p>
       ) : (
-        // Swiper carousel for displaying popular movies
         <Swiper
           effect="coverflow"
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={5}
-          loop={popularMovies.length > 3}
+          grabCursor
+          centeredSlides
+          loop={movies.length > 3}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           coverflowEffect={{
             rotate: 30,
@@ -57,9 +72,8 @@ const PopularMovies = () => {
             modifier: 1.2,
             slideShadows: true,
           }}
-          // Responsive breakpoints for different screen sizes
           breakpoints={{
-            0: { slidesPerView: 1.2, spaceBetween: 10 },
+            0: { slidesPerView: 1.2 },
             480: { slidesPerView: 1.5 },
             640: { slidesPerView: 2 },
             768: { slidesPerView: 3 },
@@ -67,32 +81,32 @@ const PopularMovies = () => {
             1280: { slidesPerView: 5 },
           }}
           modules={[EffectCoverflow, Autoplay]}
-          className="w-full max-w-6xl mx-auto">
-          {popularMovies.map((movie, index) => (
+          className="w-full max-w-6xl mx-auto"
+        >
+          {movies.map((movie, i) => (
             <SwiperSlide
               key={movie.id}
-              className="bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg text-center p-2 cursor-pointer transform hover:scale-105 transition-all duration-300"
-              onClick={() => handleMovieClick(movie.id)}>
-              {/* Movie poster image */}
+              title={movie.title}
+              onClick={() => handleMovieClick(movie.id)}
+              className="bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg cursor-pointer p-2 transform hover:scale-105 transition-all duration-300"
+              style={{ contain: "layout" }}
+            >
               <img
-                loading={index === 0 ? "eager" : "lazy"}
-                src={
+                srcSet={
                   movie.poster_path
                     ? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
-                    : "https://placehold.co/300x450?text=No+Image&font=roboto"
+                    : "https://placehold.co/300x450?text=No+Image"
                 }
-                alt={movie.title}
-                className="w-full h-64 object-cover rounded-md mb-2" />
-              {/* Movie title*/}
-              <div className="text-sm font-medium text-black dark:text-white">
-                {movie.title}
-              </div>
-              {/* Movie release date */}
-              {movie.release_date && (
-                <div className="text-xs text-black dark:text-gray-400">
-                  {new Date(movie.release_date).getFullYear()}
-                </div>
-              )}
+                alt={`${movie.title} poster`}
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                sizes="(max-width: 600px) 185px, 342px"
+                width={342}
+                height={513}
+                className="object-cover rounded-md mb-2 w-full h-full"
+              />
+              <div className="text-sm text-center  font-semibold text-black dark:text-white">{movie.title}</div>
+              <div className="text-xs text-center  text-black dark:text-gray-300">{movie.release_date?.slice(0, 4)}</div>
             </SwiperSlide>
           ))}
         </Swiper>

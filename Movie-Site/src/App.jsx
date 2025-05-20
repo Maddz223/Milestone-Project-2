@@ -1,5 +1,5 @@
-import { Suspense, lazy } from 'react'; // To help with preformance
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Route handler
+import { Suspense, lazy } from 'react'; // To help with performance
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Route handler
 
 // Context
 import { WatchlistProvider } from "./context/WatchlistContext";
@@ -9,7 +9,6 @@ import ScrollToTop from "./components/ScrollToTop";
 import Navbar from './components/Navbar'; // Navbar import
 import SearchResults from './components/SearchResults'; // SearchResults import
 import Footer from "./components/Footer"; // Footer import
-
 
 // Lazy Imports to help with performance
 const Home = lazy(() => import('./pages/Home'));
@@ -24,8 +23,8 @@ function App() {
   return (
     // Wrap the app with the WatchlistProvider to provide the watchlist context
     <WatchlistProvider>
-      {/* Use BrowserRouter to handle routing */}
-      <Router>
+      {/* Use BrowserRouter with basename to handle routing on GitHub Pages */}
+      <BrowserRouter basename="/Milestone-Project-2/">
         {/* ScrollToTop component to scroll to the top of the page on route change */}
         <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
@@ -49,7 +48,7 @@ function App() {
           </Suspense>
           <Footer />
         </div>
-      </Router>
+      </BrowserRouter>
     </WatchlistProvider>
   );
 }
