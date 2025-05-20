@@ -112,7 +112,7 @@ const TVDetails = () => {
             src={
               tvDetails.poster_path
                 ? `https://image.tmdb.org/t/p/w500${tvDetails.poster_path}`
-                : "https://via.placeholder.com/500x750?text=No+Image"
+                : "https://placehold.co/185x278?text=No+Image&font=roboto"
             }
             alt={tvDetails.name}
             loading="lazy"
