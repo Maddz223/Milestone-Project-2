@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react'; // To help with performance
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Route handler
+import { HashRouter, Routes, Route } from 'react-router-dom'; // Route handler
 
 // Context
 import { WatchlistProvider } from "./context/WatchlistContext";
@@ -23,8 +23,8 @@ function App() {
   return (
     // Wrap the app with the WatchlistProvider to provide the watchlist context
     <WatchlistProvider>
-      {/* Use BrowserRouter with basename to handle routing on GitHub Pages */}
-      <BrowserRouter basename="/Milestone-Project-2/">
+      {/* Use HashRouter with basename to handle routing on GitHub Pages */}
+      <HashRouter basename="/Milestone-Project-2/">
         {/* ScrollToTop component to scroll to the top of the page on route change */}
         <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
@@ -48,7 +48,7 @@ function App() {
           </Suspense>
           <Footer />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </WatchlistProvider>
   );
 }
