@@ -22,7 +22,7 @@ const TrailerModal = ({ trailer, onClose }) => {
             {/* Stops clicks inside the modal closing it */}
             <div
                 ref={modalRef}
-                className="relative bg-gray-800 dark:bg-slate-700 rounded-lg p-4 shadow-2xl max-w-fit transform transition-all duration-300 scale-100 animate-fadeIn"
+                className="relative bg-gray-700 dark:bg-slate-700 rounded-lg p-4 shadow-2xl max-w-fit transform transition-all duration-300 scale-100 animate-fadeIn"
                 onClick={e => e.stopPropagation()}>
                 {/* Close button */}
                 <button
