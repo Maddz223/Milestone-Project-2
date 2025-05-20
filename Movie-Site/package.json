@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "predeploy": "npm run build && cpy dist/index.html dist/404.html",
+    "predeploy": "npm run build && cpy dist/index.html dist --rename 404.html",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "test": "jest"
