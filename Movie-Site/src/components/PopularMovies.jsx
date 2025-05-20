@@ -3,11 +3,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Autoplay } from "swiper/modules";
+
+// Styles
+import "../FixSwipers.css";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
+// Components
 import SkeletonLoader from "../components/SkeletonLoader";
 
+// Fetch popular movies
 const fetchPopularMovies = async (API_KEY) => {
   const response = await axios.get("https://api.themoviedb.org/3/movie/popular", {
     params: { api_key: API_KEY },
@@ -39,13 +44,13 @@ const PopularMovies = () => {
 
     loadMovies();
   }, []);
-
+  // Handler when clicking a movie slide
   const handleMovieClick = (id) => {
     navigate(`/movie/${id}`);
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="popular-movies container mx-auto px-4 py-6 relative overflow-x-hidden overflow-y-visible">
       <h2 className="text-4xl font-bold mb-8 text-center">Trending Movies</h2>
 
       {loading ? (
@@ -84,29 +89,33 @@ const PopularMovies = () => {
           className="w-full max-w-6xl mx-auto"
         >
           {movies.map((movie, i) => (
-            <SwiperSlide
-              key={movie.id}
-              title={movie.title}
-              onClick={() => handleMovieClick(movie.id)}
-              className="bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg cursor-pointer p-2 transform hover:scale-105 transition-all duration-300"
-              style={{ contain: "layout" }}
-            >
-              <img
-                srcSet={
-                  movie.poster_path
-                    ? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
-                    : "https://placehold.co/300x450?text=No+Image"
-                }
-                alt={`${movie.title} poster`}
-                loading={i === 0 ? "eager" : "lazy"}
-                fetchPriority={i === 0 ? "high" : "auto"}
-                sizes="(max-width: 600px) 185px, 342px"
-                width={342}
-                height={513}
-                className="object-cover rounded-md mb-2 w-full h-full"
-              />
-              <div className="text-sm text-center  font-semibold text-black dark:text-white">{movie.title}</div>
-              <div className="text-xs text-center  text-black dark:text-gray-300">{movie.release_date?.slice(0, 4)}</div>
+            <SwiperSlide key={movie.id} className="overflow-visible relative z-10">
+              <div
+                onClick={() => handleMovieClick(movie.id)}
+                className="relative group transition-transform duration-300 ease-in-out"
+              ><div className="bg-slate-500 dark:bg-gray-800 rounded-lg shadow cursor-pointer p-2 relative group-hover:z-50 group-hover:-translate-y-3 group-hover:scale-[1.03] transition-all duration-300">
+                  <img
+                    srcSet={
+                      movie.poster_path
+                        ? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
+                        : "https://placehold.co/300x450?text=No+Image"
+                    }
+                    alt={`${movie.title} poster`}
+                    loading={i === 0 ? "eager" : "lazy"}
+                    fetchPriority={i === 0 ? "high" : "auto"}
+                    sizes="(max-width: 600px) 185px, 342px"
+                    width={342}
+                    height={513}
+                    className="object-cover rounded-md mb-2 w-full h-full"
+                  />
+                  <div className="text-sm text-center font-semibold text-black dark:text-white">
+                    {movie.name}
+                  </div>
+                  <div className="text-xs text-center text-black dark:text-gray-300">
+                    {movie.first_air_date?.slice(0, 4)}
+                  </div>
+                </div>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
