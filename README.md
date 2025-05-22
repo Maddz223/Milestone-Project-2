@@ -1,6 +1,7 @@
 # What2Watch
 *Your Go-To Entertainment Pal*
 
+##  Overview 
 Welcome to What2Watch.
 Discover your next binge-watch obsession with What2Watch – your go-to entertainment guide for the newest movies and television shows! Whether you're a casual viewer, a movie buff, or a television series buff, What2Watch is your go-to place for finding the perfect title to match your mood and interests.
 
@@ -21,95 +22,138 @@ What the Website Offers:
 <sub>Experience smooth and responsive UI across all devices.</sub>
 ## Planning
 
-### User Stories
+## User Stories & Acceptance Criteria
 
-### 1. Browse Trending Content  
-**As a user**, I want to see trending movies and TV shows so that I can stay updated with popular entertainment.
+### 1. **Browse Trending Content**
+**As a user, I want to see trending movies and TV shows to discover popular content.**
 
 - **Tasks**:
-  - Fetch data using TMDB API.
-  - Render image card carousels for trending movies, TV shows, and latest trailers.
+  - Integrate TMDB API to fetch trending content.
+  - Display movies and shows in separate sections.
+  - Create responsive card layout with basic info (poster, title, rating).
+
 - **Acceptance Criteria**:
-  - Carousel cards are clickable.
-  - Clicking on a trailer opens a modal.
-  - Clicking on a movie/TV card opens the details page.
+  - Trending movies and TV shows are displayed on the homepage.
+  - Cards show image, title, and rating.
+  - Clicking a card opens the detail page.
 
-### 2. Search for Titles  
-**As a user**, I want to search by title with autocomplete suggestions.
+---
+
+### 2. **Search for Content**
+**As a user, I want to search for specific movies or TV series by title.**
 
 - **Tasks**:
-  - Implement a responsive search bar.
-  - Fetch live results from TMDB API.
+  - Implement search input field in navbar.
+  - Call API on input change or submit.
+  - Display search results in a separate view.
+  - Give the user 5 suggestions within the search bar.
+
 - **Acceptance Criteria**:
   - Users can type and submit a search term.
   - Matching movies and shows are displayed.
-  - Max 5 live suggestions shown.
-  - Clicking a result navigates to its detail page.
+  - 5 Suggestions will drop down below the search bar.
+  - Clicking a result opens the detail page.
 
-### 3. View Detailed Movie/TV Info  
-**As a user**, I want to view detailed information for a selected movie or TV show.
+---
+
+### 3. **View Detailed Information**
+**As a user, I want to view detailed information about a movie or TV show.**
 
 - **Tasks**:
-  - Create a details page.
-  - Display metadata, cast, trailers, and where-to-watch info.
+  - Create MovieDetails and TVDetails components.
+  - Display cast, plot summary, release date, rating.
+  - Split into subcomponents (CastList, TrailerGallery, etc.).
+
 - **Acceptance Criteria**:
-  - Poster, title, synopsis, cast images/names are shown.
-  - Clicking a trailer opens a modal.
+  - Details page loads all key data for selected title.
   - Information is clearly grouped and styled.
   - No missing or undefined data is displayed.
 
-### 3. Watch the Newest Trailers
-**As a user**, I want to watch trailers directly on the site.
+---
+
+### 4. **Watch Trailers**
+**As a user, I want to watch trailers directly on the site.**
+
 - **Tasks**:
   - Fetch trailer links from TMDB or YouTube API.
   - Implement modal player with Tailwind.
   - Ensure responsive design for video.
+
 - **Acceptance Criteria**:
-  - Clicking the trailer thumbnail will open a modal with embedded video.
+  - Clicking the trailer thumbnail opens a modal with embedded video.
   - Modal is accessible and mobile-friendly.
   - Only official trailers are shown (if available).
 
-### 4. Know where to watch.
-**As a user**, I want to see where to watch a movie or show.
+---
+
+### 5. **Check Streaming Availability**
+**As a user, I want to see where to watch a movie or show.**
+
 - **Tasks**:
   - Fetch watch provider data from TMDB.
   - Display streaming services (logos + links).
   - Show availability by region (if applicable).
+
 - **Acceptance Criteria**:
   - At least one watch provider is listed (if available).
   - Clicking a provider opens its link in a new tab.
   - Fallback message if no provider is available.
 
-### 5. Manage Watchlist  
-**As a user**, I want to add/remove titles to/from my watchlist for future viewing.
+---
+
+### 6. **Add to Watchlist**
+**As a user, I want to add movies and TV shows to my watchlist.**
 
 - **Tasks**:
-  - Store selections in local storage/state.
-  - Change "Add to Watchlist" to "Remove" once added.
+  - Add "Add to Watchlist" button.
+  - Store data in localStorage (or database if logged in).
+  - Indicate if a title is already in the watchlist.
+
+- **Acceptance Criteria**:
+  - Clicking button adds item to watchlist.
+  - Button changes state to "Added".
+  - Watchlist persists across sessions (using localStorage).
+
+---
+
+### 7. **Manage Watchlist**
+**As a user, I want to view and manage my watchlist.**
+
+- **Tasks**:
+  - Create Watchlist page.
+  - Display saved items in a grid.
+  - Add remove button for each item.
+
 - **Acceptance Criteria**:
   - Watchlist page shows all added titles.
   - Remove button updates UI and storage immediately (works across tabs).
   - User receives confirmation or feedback on removal.
 
-### 6. Responsive Browsing  
-**As a user**, I want the website to look and function well on any device.
+---
+
+### 8. **Responsive Design**
+**As a user, I want the site to be responsive across devices.**
 
 - **Tasks**:
   - Use Tailwind CSS utility classes for responsiveness.
   - Test layouts on mobile, tablet, and desktop.
   - Optimize image and video components.
+
 - **Acceptance Criteria**:
   - No major layout issues on common device sizes.
   - Navbar collapses into hamburger menu on small screens.
   - Images and videos scale appropriately.
 
+---
 
+### 9. **Contact Support**
+**As a user, I want to contact the What2Watch team with questions or feedback.**
 
-### 7. Contact
-**As a user**, I want to contact the What2Watch team with questions or feedback.
 - **Tasks**:
   - Create a Contact Us page with form (Name, Email, Message).
   - Add form validation and success feedback.
+  - (Optional) Hook up to email service or backend.
+
 - **Acceptance Criteria**:
   - User can submit a form with valid input.
   - Feedback message confirms form submission.
@@ -140,11 +184,11 @@ The Navigation Bar is consistently displayed across all pages, providing a seaml
 - Navigation Links
 Includes direct links to the following core pages:
 - Navbar heading (clickable, redirects to the Home page)
-- Home
-- Movies
-- TV Series
-- Watchlist
-- Contact Us
+  - Home
+  - Movies
+  - TV Series
+  - Watchlist
+  - Contact Us
 - Active & Hover States
 - The active page link is visually highlighted, helping users identify their current location within the site.
 - Hover effects provide additional visual feedback to enhance interactivity.
