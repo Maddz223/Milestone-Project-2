@@ -44,9 +44,8 @@ const Navbar = () => {
               <li key={to}>
                 <NavLink
                   to={to}
-                  className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ${
-                    isActive ? "text-indigo-600 dark:text-indigo-400" : ""
-                  }`}
+                  className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ${isActive ? "text-indigo-600 dark:text-indigo-400" : ""
+                    }`}
                 >
                   {label}
                 </NavLink>
@@ -88,16 +87,21 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className="w-full">
+          <div className="w-full flex flex-col items-center gap-4">
             {/* SearchBar for mobile */}
-            <SearchBar />
+            <div className="w-full flex justify-center">
+              <SearchBar />
+            </div>
+
+            {/* Dark Mode Toggle for mobile */}
+            <div className="flex justify-center">
+              <DarkModeToggle />
+            </div>
+            </div>
           </div>
-          {/* Dark Mode Toggle for mobile */}
-          <DarkModeToggle />
-        </div>
-      )}
-    </nav>
-  );
+        )}
+      </nav>
+    );
 };
 
-export default Navbar;
+      export default Navbar;
