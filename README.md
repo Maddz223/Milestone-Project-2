@@ -126,7 +126,7 @@ Acceptance Criteria:
 
 ### Colour Scheme
 
-![Color Kit](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/colorkit.png)
+![Color Kit](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/colorkit.png)
 
 ## Features
 
