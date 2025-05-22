@@ -25,7 +25,7 @@ const Card = ({ movie, type }) => {
     : "https://placehold.co/300x450?text=No+Image&font=roboto";
 
   return (
-    <div className="relative bg-slate-300 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 w-full sm:w-48">
+    <div className="relative bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 w-full sm:w-48">
       <Link
         to={`/${type}/${movie.id}`}
         aria-label={`View details of ${movie.title || movie.name}`}
@@ -33,7 +33,7 @@ const Card = ({ movie, type }) => {
         <img
           src={imagePath}
           alt={movie.title + "Movie" || movie.name + "Movie" || "No Title"}
-          className="w-full h-64 object-cover rounded-md mb-2"
+          className="w-full text-black dark:text-white h-64 object-cover rounded-md mb-2"
           loading="lazy"
         />
         <div className="text-sm font-medium text-white truncate">
