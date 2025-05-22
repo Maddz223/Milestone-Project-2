@@ -294,7 +294,9 @@ The Watchlist page displays a curated list of movies and TV series that the user
 - Changes made on this page (e.g., removing an item) are immediately reflected across the application, including on the original Movies/TV Series pages where the "Add to Watchlist" button is restored.
 
 #### Responsiveness
-The grid layout is designed to be fully responsive, adjusting seamlessly to various screen sizes for an optimal viewing experience across all devices.
+- The grid layout is fully responsive
+- Adjusts the number of columns based on the screen size
+- Ensures a consistent and optimal viewing experience across desktops, tablets, and mobile devices
 
 ![Watchlist Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Watchlist-page.png)
 ### Modal Popout
