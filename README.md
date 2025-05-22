@@ -4,27 +4,19 @@ Welcome to What2Watch – Your Go-To Entertainment Pal.
 Discover your next binge-watch obsession with What2Watch – your go-to entertainment guide for the newest movies and television shows! Whether you're a casual viewer, a movie buff, or a television series buff, What2Watch is your go-to place for finding the perfect title to match your mood and interests.
 
 Our platform offers a simple, easy-to-use experience where you can dive into the most popular titles, explore long show and movie pages, and keep your own watchlist – all in one place. From action-packed thrillers to laugh-out-loud comedies to critically acclaimed dramas, What2Watch streamlines the search and adds a dash of fun.
-
-What the Website Offers:
-Top TV Shows & Movies Trending Now – Stay up to date with what is currently trending now.
-
-Deep Show & Movie Pages – Learn about cast, release dates, ratings, trailers, where to watch, and more.
-
-Watchlist Feature – Mark your favorites and schedule your next view easily.
-
-Trailer Modals – Quickly get official trailers with stylish pop-out video modals.
-
-Streaming Provider Information – Know where to watch every title exactly.
-
-Highlights for Cast – Find out stars playing your favorite characters.
-
-obile-Friendly UI – Effortless experience on any screen.
-
-Find the latest releases and all-time favorites, and let What2Watch take you to your next watch – because your time counts more than endless scrolling.
-
 Lights, camera, action – binge on!
 
-![Responsive Mockup](https://github.com/Maddz223/test/blob/main/assets/images/readme-images/responsive.png)
+What the Website Offers:
+- Top TV Shows & Movies Trending Now – Stay up to date with what is currently trending now.
+- Deep Show & Movie Pages – Learn about cast, release dates, ratings, trailers, where to watch, and more.
+- Watchlist Feature – Mark your favorites and schedule your next view easily.
+- Trailer Modals – Quickly get official trailers with stylish pop-out video modals.
+- Streaming Provider Information – Know where to watch every title exactly.
+- Highlights for Cast – Find out stars playing your favorite characters.
+- Mobile-Friendly UI – Effortless experience on any screen.
+- Find the latest releases and all-time favorites, and let What2Watch take you to your next watch – because your time counts more than endless scrolling.
+
+![Responsive Mockup](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Responsive.png)
 
 ## Planning
 
@@ -32,122 +24,111 @@ Lights, camera, action – binge on!
 
 As a user, I want to browse trending movies and TV shows so that I can discover popular content.
 Tasks:
-Integrate TMDB API to fetch trending content
-Display movies and shows in separate sections
-Create responsive card layout with basic info (poster, title, rating)
+- Integrate TMDB API to fetch trending content.
+- Display movies and shows in separate sections.
+- Create responsive card layout with basic info (poster, title, rating).
 Acceptance Criteria:
-Trending movies and TV shows are displayed on the homepage
-Cards show image, title, and rating
-Clicking a card opens the detail page
+- Trending movies and TV shows are displayed on the homepage.
+- Cards show image, title, and rating.
+- Clicking a card opens the detail page.
 
-As a user, I want to filter content by genre, rating, or release year.
+As a user, I want to search for specific movies or TV seires by title.
 Tasks:
-Add dropdowns or filter buttons for genre, rating, year
-Implement filtering logic using query parameters or in-state filtering
-Style filters for responsiveness
+- Implement search input field in navbar.
+- Call API on input change or submit.
+- Display search results in a separate view.
+- Give the user 5 suggestions within the searchbar.
 Acceptance Criteria:
-Filters update the displayed content dynamically
-User can combine multiple filters
-No page reload is needed to apply filters
-
-As a user, I want to search for specific movies or TV shows by title.
-Tasks:
-Implement search input field in navbar
-Call API on input change or submit
-Display search results in a separate view
-Acceptance Criteria:
-Users can type and submit a search term
-Matching movies and shows are displayed
-Clicking a result opens the detail page
+- Users can type and submit a search term.
+- Matching movies and shows are displayed.
+- 5 Suggestions will drop down below the searchbar.
+- Clicking a result opens the detail page.
 
 As a user, I want to view detailed information about a movie or TV show.
 Tasks:
-Create MovieDetails and TVDetails components
-Display cast, plot summary, release date, rating
-Split into subcomponents (CastList, TrailerGallery, etc.)
+- Create MovieDetails and TVDetails components.
+- Display cast, plot summary, release date, rating.
+- Split into subcomponents (CastList, TrailerGallery, etc.).
 Acceptance Criteria:
-Details page loads all key data for selected title
-Information is clearly grouped and styled
-No missing or undefined data is displayed
+- Details page loads all key data for selected title.
+- Information is clearly grouped and styled.
+- No missing or undefined data is displayed.
 
 As a user, I want to watch trailers directly on the site.
 Tasks:
-Fetch trailer links from TMDB or YouTube API
-Implement modal player with Tailwind
-Ensure responsive design for video
+- Fetch trailer links from TMDB or YouTube API.
+- Implement modal player with Tailwind.
+- Ensure responsive design for video.
 Acceptance Criteria:
-Clicking “Watch Trailer” opens a modal with embedded video
-Modal is accessible and mobile-friendly
-Only official trailers are shown (if available)
+- Clicking the trailer thumbnail will open a modal with embedded video.
+- Modal is accessible and mobile-friendly.
+- Only official trailers are shown (if available).
 
 As a user, I want to see where to watch a movie or show.
 Tasks:
-Fetch watch provider data from TMDB
-Display streaming services (logos + links)
-Show availability by region (if applicable)
+- Fetch watch provider data from TMDB.
+- Display streaming services (logos + links).
+- Show availability by region (if applicable).
 Acceptance Criteria:
-At least one watch provider is listed (if available)
-Clicking a provider opens its link in a new tab
-Fallback message if no provider is available
+- At least one watch provider is listed (if available).
+- Clicking a provider opens its link in a new tab.
+- Fallback message if no provider is available.
 
 As a user, I want to add movies and TV shows to my watchlist.
 Tasks:
-Add "Add to Watchlist" button
-Store data in localStorage (or database if logged in)
-Indicate if a title is already in the watchlist
+- Add "Add to Watchlist" button.
+- Store data in localStorage (or database if logged in).
+- Indicate if a title is already in the watchlist.
 Acceptance Criteria:
-Clicking button adds item to watchlist
-Button changes state to "Added"
-Watchlist persists across sessions (using localStorage)
+- Clicking button adds item to watchlist.
+- Button changes state to "Added".
+- Watchlist persists across sessions (using localStorage).
 
 As a user, I want to view and manage my watchlist.
 Tasks:
-Create Watchlist page
-Display saved items in a grid
-Add remove button for each item
+- Create Watchlist page.
+- Display saved items in a grid.
+- Add remove button for each item.
 Acceptance Criteria:
-Watchlist page shows all added titles
-Remove button updates UI and storage immediately
-User receives confirmation or feedback on removal
+- Watchlist page shows all added titles.
+- Remove button updates UI and storage immediately (works across tabs).
+- User receives confirmation or feedback on removal.
 
 As a user, I want the site to be responsive across devices.
 Tasks:
-Use Tailwind CSS utility classes for responsiveness
-Test layouts on mobile, tablet, and desktop
-Optimize image and video components
+- Use Tailwind CSS utility classes for responsiveness.
+- Test layouts on mobile, tablet, and desktop.
+- Optimize image and video components.
 Acceptance Criteria:
-No major layout issues on common device sizes
-Navbar collapses into hamburger menu on small screens
-Images and videos scale appropriately
+- No major layout issues on common device sizes.
+- Navbar collapses into hamburger menu on small screens.
+- Images and videos scale appropriately.
 
 As a user, I want to contact the What2Watch team with questions or feedback.
 Tasks:
-Create a Contact Us page with form (Name, Email, Message)
-Add form validation and success feedback
-(Optional) Hook up to email service or backend
+- Create a Contact Us page with form (Name, Email, Message).
+- Add form validation and success feedback.
+- (Optional) Hook up to email service or backend.
 Acceptance Criteria:
-User can submit a form with valid input
-Feedback message confirms form submission
-Fields reset after submission
+- User can submit a form with valid input.
+- Feedback message confirms form submission.
+- Fields reset after submission.
 
 ### Wireframes
 - __Mobile__
-![Mobile Wireframes](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/Mobile-wireframes.png)
+![Mobile Wireframes](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Mobile.png)
 - __Ipad__
-![Ipad Wireframes](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/Ipad-wireframes.png)
+![Ipad Wireframes](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Ipad.png)
 - __Laptop__
-![Laptop Wireframes](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/Laptop-Small-Desktops-wireframes.png)
+![Laptop Wireframes](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Laptop_Small%20Desktops.png)
 - __Desktop__
-![Desktop Wireframes](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/Large-Desktops-wireframes.png)
+![Desktop Wireframes](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Large%20Desktops.png)
 
 ### Colour Scheme
 
 ![Color Kit](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/colorkit.png)
 
-    --primary-color: #f8d3e0;
-    --secondary-color: #f76988;
-    --third-color: #f9b4c1;
-## Features 8
+## Features
 
 ### Navigation Bar
 
