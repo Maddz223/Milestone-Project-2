@@ -32,7 +32,7 @@ const Card = ({ movie, type }) => {
       >
         <img
           src={imagePath}
-          alt={movie.title || movie.name || "No Title"}
+          alt={movie.title + "Movie" || movie.name + "Movie" || "No Title"}
           className="w-full h-64 object-cover rounded-md mb-2"
           loading="lazy"
         />
