@@ -33,7 +33,7 @@ const Home = () => {
       </Suspense>
 
       <Suspense fallback={<SkeletonSection title="Popular TV" />}>
-        <section>
+        <section className="mb-12">
           <PopularTV />
         </section>
       </Suspense>
