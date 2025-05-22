@@ -129,97 +129,221 @@ Acceptance Criteria:
 ![Color Kit](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/colorkit.png)
 
 ## Features
-
 ### Navigation Bar
 
-  - The navigation bar is prominently featured on all pages of the website, ensuring a consistent and smooth user experience. It includes links to key sections: Navbar heading(home page), Home page, Movies page, Tv Series page, Watchlist page and Contact Us page. The bar is fully responsive, adapting seamlessly to different screen sizes and devices, ensuring easy access regardless of whether the user is on a desktop, tablet, or smartphone.
+The Navigation Bar is consistently displayed across all pages, providing a seamless and intuitive user experience throughout the website.
 
-  - This design guarantees that users can navigate through the website effortlessly from any page to any other without the need to use the browser’s 'back' button. By maintaining the same navigation structure across all pages, visitors can switch between sections with just a few clicks, enhancing usability and making the browsing experience more intuitive. 
-  - The navigation links also have a highlighted color when on a active page and when hovered over with the mouse, this allows the user to know exactly where they are on the site. 
+#### Features
+- Persistent Layout
+- The navigation bar appears on every page, allowing users to move between sections without relying on the browser’s "back" button.
+- Navigation Links
+Includes direct links to the following core pages:
+- Navbar heading (clickable, redirects to the Home page)
+- Home
+- Movies
+- TV Series
+- Watchlist
+- Contact Us
+- Active & Hover States
+- The active page link is visually highlighted, helping users identify their current location within the site.
+- Hover effects provide additional visual feedback to enhance interactivity.
+- A search bar is included in the navigation for real-time content discovery.
+- As users type, the search field displays up to 5 live suggestions matching the query.
+- All results are dynamically fetched from the TMDB (The Movie Database) API.
+- Clicking a suggestion navigates the user directly to the detail page of the selected movie or TV show.
+- A toggle button is available in the navigation bar to switch between Light and Dark themes.
+- The theme selection is applied site-wide and enhances readability and accessibility based on user preference.
+- Dark mode styling is implemented using Tailwind CSS’s dark: utility classes.
 
-### Full Screen Size
+#### Responsiveness
+- The navigation bar is fully responsive, adapting seamlessly to all screen sizes:
+- On larger screens, elements are arranged horizontally.
+- On smaller screens, a collapsible menu (e.g., hamburger icon) may be used.
+- Both the search bar and dark mode toggle remain accessible and usable across devices.
 
-![NavBar Full Size](https://github.com/Maddz223/test/blob/main/assets/images/readme-images/navbar-full-size.png)
-
-### Mobile Screen Size
-
-![Navbar Mobile Size](https://github.com/Maddz223/test/blob/main/assets/images/readme-images/navbar-mobile-size.png)
-
+#### Full Screen Size
+![NavBar Full Size](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Nav-bar-fullsize.png)
+#### Mobile Screen Size
+![Navbar Mobile Size](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Nav-bar-mobile.png)
 ### Landing Page
+The Landing Page features three dynamic, image-based carousels that offer users a visually engaging overview of current media content:
 
-  - The landing includes a large image carousel with text overlay at the bottom saying Sprinkles and the start of the card images. 
-  - This section introduces the users to our home page with an eye catching images of cupcakes, brownies and a creative birthday cake within the carousel and card images to grab their attention.
+- Latest Trailers
 
-![Landing Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/landing-page.png)
+- Trending Movies
 
-### Image Card Section
+- Trending TV Shows
 
-  - The Image card section will allow the user to see the types of cupcakes, brownies, birthday cakes,
-  Celebration Events, Special Occasion Cupcakes and Special Occasion Brownies that we have to offer. 
-  - These image cards all have links to our gallery for the user to see all the creations we offer.
+#### Features
+- Each carousel contains clickable cards displaying poster images sourced from the TMDB API.
 
-![Image Cards](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/card-section.png)
+- The cards represent individual movies or TV shows and serve as entry points to more detailed content.
 
-### Our Services section
+#### Click Behavior
 
-  - This section will allow the user to see exactly what services we offer. 
-  - This section has some animated icons that spin to grab the attention of the users. 
-  - This section has a paralax background that scrolls as the user scrolls down the our services section.
- 
-![Our Services](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/our-services.png)
+- Trending Movies / TV Shows: Navigates to the detail page (/details/:id) of the selected item.
 
-### News Letter Signup section
+- Latest Trailers: Opens a modal window to play the trailer for the selected movie.
 
-  - This section will allow the users to sign up to our newletter for special offers, events and key infomation.
-  - This section has a input box for the users to enter a email address and a submit button to sumbit the info.
-  - This form input has validation to make sure a email address is added before submitted.
+These components introduce users to the app's core offerings right from the homepage, making the experience both informative and visually compelling.
 
-![News Letter Signup](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/news-letter-signup.png)
+![Landing Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/mainpage.png)
+### Image Carousels Section
+The Image Carousels section showcases a rotating selection of trending movies and TV series, offering users an interactive and visually engaging experience.
 
+#### Features
+- Interactive Cards
+Each image card is clickable and navigates to its respective detail page (/details/:id).
+- Dynamic Content
+Poster images and metadata (e.g., title, ID) are dynamically fetched from the TMDB (The Movie Database) API, ensuring up-to-date and relevant content.
+
+#### Responsiveness
+
+- Carousels are fully responsive, adapting to various screen sizes.
+- The number of visible slides automatically adjusts based on the device:
+- More cards are shown on larger screens (e.g., desktops)
+- Fewer cards are shown on smaller screens (e.g., tablets and mobile devices) to preserve readability and usability
+
+This section boosts user engagement by allowing intuitive navigation through popular content in a smooth, mobile-friendly interface.
+
+![Image Carousels Cards](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Lastest-Movies-carousel.png)
 ### The Footer
+The Footer provides consistent navigation and branding across all pages, enhancing both usability and accessibility.
 
-  - The footer section includes an about us section with a small bit of information for the user to read to get to know Sprinkles better.
-  - The footer section also has a quick links section to act the same as the navbar to allow the user to navigate to different pages.
-  - The footer section includes links to the relevant social media sites for Sprinkles. 
-  - The footer is valuable to the user as it encourages them to keep connected via social media
-  - The links will open to a new tab to allow easy navigation for the user. 
-  - The footer has all the opening times and location for when out store is open.
-  - The footer also has contact phone number and email address for the user to use to contact.
+#### Elements
+- © Copyright Notice
+Displays the current year and ownership information.
+- Social Media Links
+Clickable icons that open external platforms (e.g., Github, Facebook, Instagram, X ) in a new tab.
+- Navigation Links
+Internal links to primary pages within the application (e.g., Home, Movies, TV Series, Watchlist, Contact Us).
 
-![Footer](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/footer.png)
+#### Functionality
+- All links are interactive, with hover effects to indicate interactivity.
+- Quick access to both internal and external destinations from any page.
 
-### About Us Page
+#### Responsiveness
+- The footer layout is fully responsive, adapting to various screen sizes
+- On larger screens, elements are arranged horizontally for a clean, wide layout.
+- On smaller screens (e.g., tablets and mobile), the layout stacks vertically to maintain readability and accessibility.
+- All text and icons scale appropriately to ensure usability across devices.
 
-  - This page will allow the user to get more information on what Sprinkles is about. 
-  - This page shows the user information and images. 
+![Footer](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/footer.png)
 
-![About Us](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/about-us-page.png)
+### Movies / Tv Series Page
+The Movies / TV Series page features a responsive grid layout showcasing a collection of media cards, each representing a movie or TV show.
 
-### Gallery
+#### Each card includes
 
-  - The gallery will provide the user with supporting images to see what creatations Sprinkles has to offer. 
-  - This section is valuable to the user as they will be able to easily identify the types of creations and styles the organisation has to offer to the user. 
-  -  The gallery also used a small amount of Java script to allow the images to pop out into a modal when clicked.
-  - This allows a better user experience to allow the user to have a better view of the images.
+- A high-resolution poster image, dynamically fetched from the TMDB API
+- The title of the movie or show (also sourced from the TMDB API)
+- An "Add to Watchlist" button
+- Adds the selected item to the Watchlist page
+- Once added, the button dynamically changes to a "Remove" option, allowing users to manage their watchlist directly
 
-![Gallery](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/gallery-page.png)
+#### Responsiveness
+- The grid layout is fully responsive
+- Adjusts the number of columns based on the screen size
+- Ensures a consistent and optimal viewing experience across desktops, tablets, and mobile devices
 
+This page serves as a central hub for discovering and saving movies and TV series, with a design optimized for usability and performance.
+
+![Movies](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Movies.png)
+
+![Tv Series](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Tv-Series.png)
+### Details Page
+
+The Details Page provides an in-depth view of a selected movie or tv series, including visual assets, metadata, cast, trailers, and availability information. This details page is used for both moives and tv series pages.
+
+#### Features
+- Poster Display
+A high-resolution poster of the movie is displayed prominently on the left side of the page.
+- Basic Metadata
+Shown on the right side next to the poster:
+- Title (e.g., A Minecraft Movie)
+- Release Date
+- Ratings (e.g., 6.5 / 10)
+- Overview: A brief synopsis of the movie pulled from the TMDB API
+- Add to Watchlist Button
+Below the poster, users can add the movie to their personal watchlist. Once added, the button changes to "Remove", allowing users to toggle their preference.
+- Cast Members
+A horizontal scrollable list of cast members, each displaying:
+- Actor’s image
+- Actor's Name
+- Character name
+(All data fetched from the TMDB API)
+- Trailers Section
+Embedded video thumbnails link to official trailers. Clicking a trailer opens it in a popup modal.
+- Where to Watch Section
+Displays streaming availability based on the user's region.
+- If no streaming providers are available, a fallback message is shown.
+
+#### Responsiveness
+The grid layout is designed to be fully responsive, adjusting seamlessly to various screen sizes for an optimal viewing experience across all devices.
+
+![Details Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Details-page.png)
+
+### Watchlist Page
+The Watchlist page displays a curated list of movies and TV series that the user has added from the Movies or TV Series pages.
+
+#### Features
+- Responsive grid layout of saved items.
+- Poster image (from the TMDB API).
+- Title.
+- "Remove" button to delete the item from the watchlist.
+- Changes made on this page (e.g., removing an item) are immediately reflected across the application, including on the original Movies/TV Series pages where the "Add to Watchlist" button is restored.
+
+#### Responsiveness
+The grid layout is designed to be fully responsive, adjusting seamlessly to various screen sizes for an optimal viewing experience across all devices.
+
+![Watchlist Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Watchlist-page.png)
 ### Modal Popout
+The application uses a modal popout component to display trailers and other dynamic content without navigating away from the current page or when completing the contact us form. This Modal component is used in the latest movies carousel, detail page and contact us page.
 
-![Modal popout](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/modal-gallery-popout.png)
+#### Features
+- Opens a centered overlay window (modal) containing an embedded video player (e.g., YouTube iframe).
+- Contact form confirmations.
+- Fetches trailer video URLs from the TMDB API.
+- The rest of the page is blurred to keep the user's focus on the modal content.
+- Includes a close icon/button to dismiss the modal and return to the current page.
+
+#### Responsiveness
+- The modal adapts to screen size
+- Scales video and layout appropriately on mobile devices
+- Maintains aspect ratio for an optimal viewing experience across devices
+
+These features enhance the users experience by allowing media playback in context, without disrupting the browsing flow.
+![Modal popout](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Modal-popup.png)
 
 ### Contact Us Page
 
-  - This page will allow the user to get in contact with Sprinkles. 
-  - The user will be asked to submit their full name, email address, phone number and a section to for the user to write a message. all these inputs are required before the user can proceed. 
+The Contact Us Page provides users with a straightforward and accessible way to reach out with questions or feedback.
 
-![Contact Us](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/contact-us-page.png)
+#### Features
+- Input Fields
+- Name: Text input for the user's full name.
+- Email: Email input field with format validation.
+- Message: Multi-line textarea for writing user queries or comments.
+- Name and emailfields include autocompletion to enhance the user experience.
+- Submit Button which triggers form validation and submission.
 
-### Success Page
+#### Success Modal
+- Upon successful submission, a modal popup confirms that the message has been sent.
+- Centered overlay with a success message (e.g., "Thank you for reaching out! We'll get back to you soon.").
+- Background is blurred to maintain focus on the modal.
+- Includes a close button/icon to dismiss the modal.
 
-  - This page will allow the user to get conformation that their message or email address has been accepted. 
+#### Form Behavior
+- All fields are required.
+- Real-time input validation ensures proper formatting before submission.
+- Visual feedback (such as input highlighting or error messages) guides users to correct mistakes.
 
-![Success Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/success-page.png)
+#### Responsiveness
+- The form is fully responsive, scaling smoothly across devices from desktop to mobile.
+- Layout adjusts spacing and input sizes based on screen resolution.
+- Ensures accessibility and usability regardless of device.
+
+![Contact Us](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/ContactUs.png)
 
 ## Testing 
 
@@ -269,19 +393,22 @@ Click on "Generate report" to run the test.
 For more information, check the Lighthouse documentation.
 
 #### Index page
-![Index-lighthouse](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/index-lighthouse.png)
+![Index-lighthouse](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/mainpage-lighthouse.png)
 
-#### About Us
-![About Us Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/about-us-lighthouse.png)
+#### Movies
+![Movies Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/movies-page-lighthouse.png)
 
-#### Gallery
-![Gallery Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/gallery-lighthouse.png)
+#### Movie Details
+![Movies Details Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/movies-page-lighthouse.png)
+
+#### TVSeries
+![TVSeries Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/TVSeries-page-lighthouse.png)
+
+#### Watchlist
+![Watchlist Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Watchlist-page-lighthouse.png)
 
 #### Contact Us
-![Contact Us Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/contact-us-lighthouse.png)
-
-#### Success Page
-![Success Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/success-lighthouse.png)
+![Success Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/ContactUs-page-lighthouse.png)
 
 All testing was conducted in Google Chrome using incognito mode.
 
@@ -333,80 +460,23 @@ Some common issues you may encounter include:
 ### HTML
   - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/)
 
-#### Index page
-![w3c Index](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/w3c-indexpage.png)
+#### Main page
+![w3c Index](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/HtmlChecker.png)
 
-#### About Us
-![w3c About Us Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/w3c-about-us-page.png)
+This website is developed with JavaScript (React), and during the build process for deployment, all assets are bundled, minified, and served through a single HTML file for optimized delivery.
 
-#### Gallery
-![w3c Gallery Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/w3c-gallery-page.png)
-
-#### Contact Us
-![w3c Contact Us Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/w3c-contact-us-page.png)
-
-#### Success Page
-![w3c Success Page](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/w3c-success-page.png)
-
-### Jigsaw CSS Validator
-
-The Jigsaw CSS Validator is a tool from the W3C used to check the validity of your CSS code. It ensures that your CSS follows proper syntax and adheres to web standards, preventing issues like broken styles or compatibility problems across browsers.
-
-### How to Use Jigsaw CSS Validator
-
-#### Online CSS Validation
-
-- Go to the Jigsaw CSS Validator.
-- You can validate CSS in three ways:
-- By URL: Enter the URL of your stylesheet (e.g., style.css) to validate a live CSS file.
-- By File: Upload your CSS file directly from your computer.
-- By Text: Paste your CSS code into the provided text box.
-- Once you submit the form, the validator will check your CSS code for errors, warnings, and potential      improvements.
-
-#### Understanding the Results
-
-- Errors: The validator will highlight syntax issues, such as missing semicolons, unrecognized properties, or invalid values.
-- Warnings: It will also flag CSS properties that are deprecated or may cause issues in specific browsers.
-- Suggestions: The validator will recommend improvements or alternative, more efficient CSS practices.
-
-#### Correcting Issues
-
-- Review the error and warning messages provided by the validator.
-- Modify your CSS file based on the suggestions and fix the identified problems.
-- Re-run the validation to confirm the corrections were successful.
-- Benefits of Using Jigsaw CSS Validator
-- Cross-Browser Compatibility: Ensures that your CSS will work as intended across different web browsers.
-- Standard Compliance: Validates that your CSS follows W3C standards, improving code quality and performance.
-- Debugging: Helps identify hidden issues in your CSS that could affect the layout or design.
-- Future-Proofing: By identifying deprecated CSS properties, it helps future-proof your stylesheets for upcoming web standards.
 
 #### Automated Validation (Optional)
 If you're working in a development environment, you can integrate the CSS validation into your continuous integration (CI) pipeline. This allows you to automate validation checks and ensure that invalid CSS is caught early during the development process.
 
 You can use services like Travis CI, GitHub Actions, or CircleCI to set up automated CSS validation steps in your workflow.
 
-#### Example
-After running the validator, you may encounter results like the following:
-
-- Error: background-color: #fff; — should be written as background-color: white; (more readable and accessible).
-- Warning: font-size: 16px; — consider using rem instead of px for better scalability.
-
-### CSS
-  - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/)
-
-#### Jigsaw Results
-![Jigsaw css](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/jigsaw-css.png)
-
-#### Jigsaw Warnings
-![Jigsaw warnings](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/jigsaw-css-warnings.png)
-
-
 ## Deployment
 ### Local Deployment
 To run this project locally on your computer, follow the steps below. This is useful for development, testing, or reviewing the project before deploying it to a live server.
 
 #### Prerequisites
-You can find the clone link here [Sprinkles Github](https://github.com/Maddz223/Sprinkles.git)
+You can find the clone link here [What2Watch Github](https://github.com/Maddz223/Milestone-Project-2)
 
 Ensure you have the following tools installed:
 
@@ -414,41 +484,91 @@ Ensure you have the following tools installed:
 
 Step 1: Clone the Repository, this can be done by going to the Sprinkles github and clicking code then copy the link.
 
-![How to clone](https://github.com/Maddz223/Sprinkles/blob/main/assets/images/readme-images/how-to-clone.png)
+![How to clone](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/how-to-clone.png)
 
 Start by opening up command prompt on your computer and cloning the project repository to your local machine:
 
 Enter the code below
 ```
-git clone https://github.com/Maddz223/Sprinkles.git
+git clone https://github.com/Maddz223/Milestone-Project-2.git
 ```
-Then direct yourself to your repository.
+Then direct yourself to your repository for the What2Watch site.
 ```
-cd Sprinkles
+cd Milestone-Project-2
+cd What2Watch
 ```
-Step 2: For static sites (HTML/CSS/JS), you can use a simple web server like Live Server in VSCode or run the following code if you have python installed.
+Step 2: Installing the dependencies.
 
 ```
-python -m http.server
+npm install
 ```
-After running the project, it should be accessible at http://localhost:3000 (or another port, depending on your project).
+This uses package.json to install all the needed dependencies.
 
-You can also open the index.html file straight from your directory folder and view the page.
+Step 3: Build the project.
+
+```
+npm run build
+```
+This builds the project and creates a dist/ folder with opitmized files.
+
+Step 4: Run the build in development mode.
+
+```
+npm run dev
+```
+This uses vite internal local host development server which is accessible at http://localhost:5173/Milestone-Project-2/ 
+
+This allows for auto reload and debug tools like google inspect.
 
 #### Github Pages
-- The site was deployed to GitHub pages. The steps to deploy are as follows: 
-  - In the GitHub repository, navigate to the Settings tab 
-  - From the source section drop-down menu, select the Master Branch
-  - Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment. 
+Step 1: Installing gh-pages
 
-The live link can be found here - https://maddz223.github.io/Sprinkles/index.html
+```
+npm install gh-pages --save-dev
+```
+
+Step 2: Editing vite.config.js
+Add this if your repo is at https://github.com/yourusername/Milestone-Project-2:
+
+```
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  base: '/your-repo/',
+  plugins: [react()],
+})
+```
+
+Step 3: Add deploy scripts to package.json
+
+```
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "deploy": "gh-pages -d dist"
+}
+```
+
+Step 4: Deploying the project.
+
+```
+npm run build
+npm run deploy
+```
+
+Then your app is live at:
+
+https://yourusername.github.io/Milestone-Project-2/
 
 
 ## Credits 
-- Colour pallet for the site was taken from [Colorkit](https://colorkit.co/color-palette-generator/f8d3e0-f9b4c1-f76988/) 
-- The icons on the site were taken from [Font Awesome](https://fontawesome.com/)
-- Bootstrap for their amazing libary that helped build this site[Bootstrap](https://getbootstrap.com/)
-- Java script for lightbox in the gallery from [Lightbox](https://trvswgnr.github.io/bs5-lightbox/)
+- Colour pallet for the site was taken from [Colorkit](https://colorkit.co/color-palette-generator/111827-1F2937-4F46E5-fff-000000/) 
+- The icons on the site were taken from Lud
+- Tailwindcss for their amazing libary that helped build this site[Tailwindcss](https://tailwindcss.com/)
+- Java script for lightbox in the gallery from [React](https://react.dev/)
+[Vite](https://vite.dev/)
 
 ### Content 
 
