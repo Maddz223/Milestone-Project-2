@@ -114,7 +114,7 @@ const TVDetails = () => {
                 ? `https://image.tmdb.org/t/p/w500${tvDetails.poster_path}`
                 : "https://placehold.co/185x278?text=No+Image&font=roboto"
             }
-            alt={tvDetails.name}
+            alt={tvDetails.name + "Tv Series" || "No Title"}
             loading="lazy"
             className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-4 shadow-lg" />
           {/* Add to Watchlist button */}

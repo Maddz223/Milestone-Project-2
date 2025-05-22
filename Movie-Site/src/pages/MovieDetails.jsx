@@ -117,7 +117,7 @@ const MovieDetails = () => {
                 ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
                 : "https://placehold.co/185x278?text=No+Image&font=roboto"
             }
-            alt={movieDetails.title}
+            alt={movieDetails.title + "Movie" || "No Title"}
             className="w-64 sm:w-72 lg:w-80 object-cover rounded-lg mb-4 shadow-lg" />
           {/* Add to Watchlist button */}
           <WatchlistButton inWatchlist={inWatchlist} onToggle={toggleWatchlist} />
