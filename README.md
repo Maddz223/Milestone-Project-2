@@ -591,7 +591,7 @@ To run this project locally on your computer, follow the steps below. This is us
 
 - **TMDB (The Movie Database)**  
   Used for fetching movies, TV shows, cast, and trailer information.  
-  [→ Get an API key](https://developer.themoviedb.org/docs/getting-started)
+  [→ Get an API key here](https://developer.themoviedb.org/docs/getting-started)
 
 - **JustWatch API (via TMDB)**  
   Used to fetch streaming availability by region.
@@ -735,7 +735,7 @@ https://yourusername.github.io/Milestone-Project-2/
 
 ## Credits 
 
-### Content 
+### *Content*
 
 - Colour pallet for the site was taken from [Colorkit](https://colorkit.co/color-palette-generator/111827-1F2937-4F46E5-fff-000000/) 
 - The icons on the site were taken from lucide-react dependency [Lucide React](https://lucide.dev/guide/packages/lucide-react)
