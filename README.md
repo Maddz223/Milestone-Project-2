@@ -1,6 +1,11 @@
 # What2Watch
 *Your Go-To Entertainment Pal*
 
+## Live Link
+
+Click below for a live link.
+[What2Watch](https://maddz223.github.io/Milestone-Project-2/#/)
+
 ##  Overview 
 Welcome to What2Watch.
 Discover your next binge-watch obsession with What2Watch – your go-to entertainment guide for the newest movies and television shows! Whether you're a casual viewer, a movie buff, or a television series buff, What2Watch is your go-to place for finding the perfect title to match your mood and interests.
@@ -184,7 +189,7 @@ The Navigation Bar is consistently displayed across all pages, providing a seaml
 - The navigation bar appears on every page, allowing users to move between sections without relying on the browser’s "back" button.
 - Navigation Links
 Includes direct links to the following core pages:
-- Navbar heading (clickable, redirects to the Home page)
+  - Navbar heading (clickable, redirects to the Home page)
   - Home
   - Movies
   - TV Series
