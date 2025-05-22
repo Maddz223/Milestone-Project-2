@@ -109,10 +109,10 @@ const PopularMovies = () => {
                     className="object-cover rounded-md mb-2 w-full h-full"
                   />
                   <div className="text-sm text-center font-semibold text-black dark:text-white">
-                    {movie.name}
+                    {movie.title}
                   </div>
                   <div className="text-xs text-center text-black dark:text-gray-300">
-                    {movie.first_air_date?.slice(0, 4)}
+                    {movie.release_date?.slice(0, 4)}
                   </div>
                 </div>
               </div>
