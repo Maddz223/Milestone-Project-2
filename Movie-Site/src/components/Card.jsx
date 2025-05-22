@@ -25,7 +25,7 @@ const Card = ({ movie, type }) => {
     : "https://placehold.co/300x450?text=No+Image&font=roboto";
 
   return (
-    <div className="relative bg-slate-500 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 w-full sm:w-48">
+    <div className="relative bg-slate-300 dark:bg-gray-800 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 text-center p-2 w-full sm:w-48">
       <Link
         to={`/${type}/${movie.id}`}
         aria-label={`View details of ${movie.title || movie.name}`}
@@ -43,7 +43,7 @@ const Card = ({ movie, type }) => {
       {/* Add to Watchlist button */}
       <button
         onClick={toggleWatchlist}
-        className={`mt-2 text-xs font-semibold px-3 py-1 rounded-full transition-colors duration-200 ${inWatchlist ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"
+        className={`mt-2 text-xs font-semibold px-3 py-1 rounded-full transition-colors duration-200 ${inWatchlist ? "bg-red-500 hover:bg-red-600" : "bg-blue-600 hover:bg-blue-700"
           } text-white`}
         aria-label={inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}>
         {inWatchlist ? "Remove" : "Add to Watchlist"}
