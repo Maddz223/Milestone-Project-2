@@ -586,6 +586,7 @@ WatchProviders.test.jsx
 ### *Local Deployment*
 To run this project locally on your computer, follow the steps below. This is useful for development, testing, or reviewing the project before deploying it to a live server.
 
+---
 ### *API Integration*
 
 - **TMDB (The Movie Database)**  
@@ -626,13 +627,13 @@ VITE_TMDB_API_KEY=your_api_key_here
 ```
 - Never expose your key in public GitHub repos.
 - Respect TMDB’s rate limits and usage policies.
-
-#### *Prerequisites*
+---
+### *Prerequisites*
 You can find the clone link here [What2Watch Github](https://github.com/Maddz223/Milestone-Project-2)
 
 Ensure you have the following tools installed:
 
-#### *Git*
+### *Git*
 
 Step 1: Clone the Repository, this can be done by going to the Sprinkles github and clicking code then copy the link.
 
@@ -677,6 +678,7 @@ This allows for auto reload and debug tools like google inspect.
 ```env
 VITE_TMDB_API_KEY=your_tmdb_api_key_here
 ```
+---
 #### *Deploying to Github Pages*
 Step 1: Installing gh-pages
 
@@ -728,6 +730,8 @@ https://yourusername.github.io/Milestone-Project-2/
 - [Jest](https://jestjs.io/) – For unit testing.
 - [React](https://react.dev/) - Ease of use.
 - [Vite](https://vite.dev/) - Next Generation Frontend Tooling
+
+---
 
 ## Credits 
 
