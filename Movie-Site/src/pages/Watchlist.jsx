@@ -20,24 +20,27 @@ const Watchlist = () => {
   return (
     <div className="container mx-auto pt-15 px-4 py-6">
       <h2 className="text-3xl text-center font-bold mb-6">My Watchlist</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-center">
         {/* Map through watchlist items */}
         {watchlist.map((item) => (
-          <div key={`${item.type}-${item.id}`} className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow">
+          <div
+            key={`${item.type}-${item.id}`}
+            className="bg-gray-500 dark:bg-gray-800 w-[200px] h-[360px] p-3 rounded-xl shadow flex flex-col justify-between"
+          >
             <Link to={`/${item.type === "movie" ? "movie" : "tv"}/${item.id}`}>
-              {/* Movie or TV Show Poster */}
               <img
                 src={
                   item.poster_path
                     ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
-                    : "https://via.placeholder.com/500x750?text=No+Image"}
+                    : "https://via.placeholder.com/500x750?text=No+Image"
+                }
                 alt={item.title || item.name}
-                className="w-full h-64 object-cover rounded mb-3"
+                className="w-full h-[250px] object-cover rounded"
               />
-              {/* Movie or TV Show Title */}
-              <h3 className="text-md font-semibold text-center">{item.title || item.name}</h3>
+              <h3 className="text-sm font-semibold text-center mt-2">
+                {item.title || item.name}
+              </h3>
             </Link>
-            {/* Remove from watchlist button */}
             <button
               onClick={() => removeFromWatchlist(item.id, item.type)}
               className="mt-3 w-full bg-red-600 hover:bg-red-700 text-white text-sm py-1 rounded"
