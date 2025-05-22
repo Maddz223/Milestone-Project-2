@@ -1,118 +1,119 @@
 # What2Watch
+*Your Go-To Entertainment Pal*
 
-Welcome to What2Watch – Your Go-To Entertainment Pal.
+Welcome to What2Watch.
 Discover your next binge-watch obsession with What2Watch – your go-to entertainment guide for the newest movies and television shows! Whether you're a casual viewer, a movie buff, or a television series buff, What2Watch is your go-to place for finding the perfect title to match your mood and interests.
 
 Our platform offers a simple, easy-to-use experience where you can dive into the most popular titles, explore long show and movie pages, and keep your own watchlist – all in one place. From action-packed thrillers to laugh-out-loud comedies to critically acclaimed dramas, What2Watch streamlines the search and adds a dash of fun.
 Lights, camera, action – binge on!
 
 What the Website Offers:
-- Top TV Shows & Movies Trending Now – Stay up to date with what is currently trending now.
-- Deep Show & Movie Pages – Learn about cast, release dates, ratings, trailers, where to watch, and more.
-- Watchlist Feature – Mark your favorites and schedule your next view easily.
-- Trailer Modals – Quickly get official trailers with stylish pop-out video modals.
-- Streaming Provider Information – Know where to watch every title exactly.
-- Highlights for Cast – Find out stars playing your favorite characters.
-- Mobile-Friendly UI – Effortless experience on any screen.
-- Find the latest releases and all-time favorites, and let What2Watch take you to your next watch – because your time counts more than endless scrolling.
+- Trending Content: Stay updated with the latest popular movies and TV shows.
+- Detailed Pages: Access comprehensive information, including cast, release dates, ratings, trailers, and streaming options.
+- Watchlist: Save your favorite titles for easy access later.
+- Trailer Modals: View official trailers in stylish pop-out modals.
+- Streaming Providers: Find out where to watch each title.
+- Cast Highlights: Learn about the actors behind your favorite characters.
+- Responsive Design: Enjoy a seamless experience on any device.
 
 ![Responsive Mockup](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Responsive.png)
 
+<sub>Experience smooth and responsive UI across all devices.</sub>
 ## Planning
 
 ### User Stories
 
-As a user, I want to browse trending movies and TV shows so that I can discover popular content.
-Tasks:
-- Integrate TMDB API to fetch trending content.
-- Display movies and shows in separate sections.
-- Create responsive card layout with basic info (poster, title, rating).
-Acceptance Criteria:
-- Trending movies and TV shows are displayed on the homepage.
-- Cards show image, title, and rating.
-- Clicking a card opens the detail page.
+### 1. Browse Trending Content  
+**As a user**, I want to see trending movies and TV shows so that I can stay updated with popular entertainment.
 
-As a user, I want to search for specific movies or TV seires by title.
-Tasks:
-- Implement search input field in navbar.
-- Call API on input change or submit.
-- Display search results in a separate view.
-- Give the user 5 suggestions within the searchbar.
-Acceptance Criteria:
-- Users can type and submit a search term.
-- Matching movies and shows are displayed.
-- 5 Suggestions will drop down below the searchbar.
-- Clicking a result opens the detail page.
+- **Tasks**:
+  - Fetch data using TMDB API.
+  - Render image card carousels for trending movies, TV shows, and latest trailers.
+- **Acceptance Criteria**:
+  - Carousel cards are clickable.
+  - Clicking on a trailer opens a modal.
+  - Clicking on a movie/TV card opens the details page.
 
-As a user, I want to view detailed information about a movie or TV show.
-Tasks:
-- Create MovieDetails and TVDetails components.
-- Display cast, plot summary, release date, rating.
-- Split into subcomponents (CastList, TrailerGallery, etc.).
-Acceptance Criteria:
-- Details page loads all key data for selected title.
-- Information is clearly grouped and styled.
-- No missing or undefined data is displayed.
+### 2. Search for Titles  
+**As a user**, I want to search by title with autocomplete suggestions.
 
-As a user, I want to watch trailers directly on the site.
-Tasks:
-- Fetch trailer links from TMDB or YouTube API.
-- Implement modal player with Tailwind.
-- Ensure responsive design for video.
-Acceptance Criteria:
-- Clicking the trailer thumbnail will open a modal with embedded video.
-- Modal is accessible and mobile-friendly.
-- Only official trailers are shown (if available).
+- **Tasks**:
+  - Implement a responsive search bar.
+  - Fetch live results from TMDB API.
+- **Acceptance Criteria**:
+  - Users can type and submit a search term.
+  - Matching movies and shows are displayed.
+  - Max 5 live suggestions shown.
+  - Clicking a result navigates to its detail page.
 
-As a user, I want to see where to watch a movie or show.
-Tasks:
-- Fetch watch provider data from TMDB.
-- Display streaming services (logos + links).
-- Show availability by region (if applicable).
-Acceptance Criteria:
-- At least one watch provider is listed (if available).
-- Clicking a provider opens its link in a new tab.
-- Fallback message if no provider is available.
+### 3. View Detailed Movie/TV Info  
+**As a user**, I want to view detailed information for a selected movie or TV show.
 
-As a user, I want to add movies and TV shows to my watchlist.
-Tasks:
-- Add "Add to Watchlist" button.
-- Store data in localStorage (or database if logged in).
-- Indicate if a title is already in the watchlist.
-Acceptance Criteria:
-- Clicking button adds item to watchlist.
-- Button changes state to "Added".
-- Watchlist persists across sessions (using localStorage).
+- **Tasks**:
+  - Create a details page.
+  - Display metadata, cast, trailers, and where-to-watch info.
+- **Acceptance Criteria**:
+  - Poster, title, synopsis, cast images/names are shown.
+  - Clicking a trailer opens a modal.
+  - Information is clearly grouped and styled.
+  - No missing or undefined data is displayed.
 
-As a user, I want to view and manage my watchlist.
-Tasks:
-- Create Watchlist page.
-- Display saved items in a grid.
-- Add remove button for each item.
-Acceptance Criteria:
-- Watchlist page shows all added titles.
-- Remove button updates UI and storage immediately (works across tabs).
-- User receives confirmation or feedback on removal.
+### 3. Watch the Newest Trailers
+**As a user**, I want to watch trailers directly on the site.
+- **Tasks**:
+  - Fetch trailer links from TMDB or YouTube API.
+  - Implement modal player with Tailwind.
+  - Ensure responsive design for video.
+- **Acceptance Criteria**:
+  - Clicking the trailer thumbnail will open a modal with embedded video.
+  - Modal is accessible and mobile-friendly.
+  - Only official trailers are shown (if available).
 
-As a user, I want the site to be responsive across devices.
-Tasks:
-- Use Tailwind CSS utility classes for responsiveness.
-- Test layouts on mobile, tablet, and desktop.
-- Optimize image and video components.
-Acceptance Criteria:
-- No major layout issues on common device sizes.
-- Navbar collapses into hamburger menu on small screens.
-- Images and videos scale appropriately.
+### 4. Know where to watch.
+**As a user**, I want to see where to watch a movie or show.
+- **Tasks**:
+  - Fetch watch provider data from TMDB.
+  - Display streaming services (logos + links).
+  - Show availability by region (if applicable).
+- **Acceptance Criteria**:
+  - At least one watch provider is listed (if available).
+  - Clicking a provider opens its link in a new tab.
+  - Fallback message if no provider is available.
 
-As a user, I want to contact the What2Watch team with questions or feedback.
-Tasks:
-- Create a Contact Us page with form (Name, Email, Message).
-- Add form validation and success feedback.
-- (Optional) Hook up to email service or backend.
-Acceptance Criteria:
-- User can submit a form with valid input.
-- Feedback message confirms form submission.
-- Fields reset after submission.
+### 5. Manage Watchlist  
+**As a user**, I want to add/remove titles to/from my watchlist for future viewing.
+
+- **Tasks**:
+  - Store selections in local storage/state.
+  - Change "Add to Watchlist" to "Remove" once added.
+- **Acceptance Criteria**:
+  - Watchlist page shows all added titles.
+  - Remove button updates UI and storage immediately (works across tabs).
+  - User receives confirmation or feedback on removal.
+
+### 6. Responsive Browsing  
+**As a user**, I want the website to look and function well on any device.
+
+- **Tasks**:
+  - Use Tailwind CSS utility classes for responsiveness.
+  - Test layouts on mobile, tablet, and desktop.
+  - Optimize image and video components.
+- **Acceptance Criteria**:
+  - No major layout issues on common device sizes.
+  - Navbar collapses into hamburger menu on small screens.
+  - Images and videos scale appropriately.
+
+
+
+### 7. Contact
+**As a user**, I want to contact the What2Watch team with questions or feedback.
+- **Tasks**:
+  - Create a Contact Us page with form (Name, Email, Message).
+  - Add form validation and success feedback.
+- **Acceptance Criteria**:
+  - User can submit a form with valid input.
+  - Feedback message confirms form submission.
+  - Fields reset after submission.
 
 ### Wireframes
 - __Mobile__
@@ -129,11 +130,11 @@ Acceptance Criteria:
 ![Color Kit](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/colorkit.png)
 
 ## Features
-### Navigation Bar
+### **Navigation Bar**
 
 The Navigation Bar is consistently displayed across all pages, providing a seamless and intuitive user experience throughout the website.
 
-#### Features
+#### *Features*
 - Persistent Layout
 - The navigation bar appears on every page, allowing users to move between sections without relying on the browser’s "back" button.
 - Navigation Links
@@ -155,7 +156,7 @@ Includes direct links to the following core pages:
 - The theme selection is applied site-wide and enhances readability and accessibility based on user preference.
 - Dark mode styling is implemented using Tailwind CSS’s dark: utility classes.
 
-#### Responsiveness
+#### *Responsiveness*
 - The navigation bar is fully responsive, adapting seamlessly to all screen sizes:
 - On larger screens, elements are arranged horizontally.
 - On smaller screens, a collapsible menu (e.g., hamburger icon) may be used.
@@ -169,20 +170,16 @@ Includes direct links to the following core pages:
 The Landing Page features three dynamic, image-based carousels that offer users a visually engaging overview of current media content:
 
 - Latest Trailers
-
 - Trending Movies
-
 - Trending TV Shows
 
-#### Features
+#### *Features*
 - Each carousel contains clickable cards displaying poster images sourced from the TMDB API.
-
 - The cards represent individual movies or TV shows and serve as entry points to more detailed content.
 
-#### Click Behavior
+#### *Click Behavior*
 
 - Trending Movies / TV Shows: Navigates to the detail page (/details/:id) of the selected item.
-
 - Latest Trailers: Opens a modal window to play the trailer for the selected movie.
 
 These components introduce users to the app's core offerings right from the homepage, making the experience both informative and visually compelling.
@@ -191,13 +188,13 @@ These components introduce users to the app's core offerings right from the home
 ### Image Carousels Section
 The Image Carousels section showcases a rotating selection of trending movies and TV series, offering users an interactive and visually engaging experience.
 
-#### Features
+#### *Features*
 - Interactive Cards
 Each image card is clickable and navigates to its respective detail page (/details/:id).
 - Dynamic Content
 Poster images and metadata (e.g., title, ID) are dynamically fetched from the TMDB (The Movie Database) API, ensuring up-to-date and relevant content.
 
-#### Responsiveness
+#### *Responsiveness*
 
 - Carousels are fully responsive, adapting to various screen sizes.
 - The number of visible slides automatically adjusts based on the device:
@@ -210,7 +207,7 @@ This section boosts user engagement by allowing intuitive navigation through pop
 ### The Footer
 The Footer provides consistent navigation and branding across all pages, enhancing both usability and accessibility.
 
-#### Elements
+#### *Elements*
 - © Copyright Notice
 Displays the current year and ownership information.
 - Social Media Links
@@ -218,11 +215,11 @@ Clickable icons that open external platforms (e.g., Github, Facebook, Instagram,
 - Navigation Links
 Internal links to primary pages within the application (e.g., Home, Movies, TV Series, Watchlist, Contact Us).
 
-#### Functionality
+#### *Functionality*
 - All links are interactive, with hover effects to indicate interactivity.
 - Quick access to both internal and external destinations from any page.
 
-#### Responsiveness
+#### *Responsiveness*
 - The footer layout is fully responsive, adapting to various screen sizes
 - On larger screens, elements are arranged horizontally for a clean, wide layout.
 - On smaller screens (e.g., tablets and mobile), the layout stacks vertically to maintain readability and accessibility.
@@ -233,7 +230,7 @@ Internal links to primary pages within the application (e.g., Home, Movies, TV S
 ### Movies / Tv Series Page
 The Movies / TV Series page features a responsive grid layout showcasing a collection of media cards, each representing a movie or TV show.
 
-#### Each card includes
+#### *Each card includes*
 
 - A high-resolution poster image, dynamically fetched from the TMDB API
 - The title of the movie or show (also sourced from the TMDB API)
@@ -241,7 +238,7 @@ The Movies / TV Series page features a responsive grid layout showcasing a colle
 - Adds the selected item to the Watchlist page
 - Once added, the button dynamically changes to a "Remove" option, allowing users to manage their watchlist directly
 
-#### Responsiveness
+#### *Responsiveness*
 - The grid layout is fully responsive
 - Adjusts the number of columns based on the screen size
 - Ensures a consistent and optimal viewing experience across desktops, tablets, and mobile devices
@@ -255,7 +252,7 @@ This page serves as a central hub for discovering and saving movies and TV serie
 
 The Details Page provides an in-depth view of a selected movie or tv series, including visual assets, metadata, cast, trailers, and availability information. This details page is used for both moives and tv series pages.
 
-#### Features
+#### *Features*
 - Poster Display
 A high-resolution poster of the movie is displayed prominently on the left side of the page.
 - Basic Metadata
@@ -278,7 +275,7 @@ Embedded video thumbnails link to official trailers. Clicking a trailer opens it
 Displays streaming availability based on the user's region.
 - If no streaming providers are available, a fallback message is shown.
 
-#### Responsiveness
+#### *Responsiveness*
 The grid layout is designed to be fully responsive, adjusting seamlessly to various screen sizes for an optimal viewing experience across all devices.
 
 ![Details Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Details-page.png)
@@ -286,14 +283,14 @@ The grid layout is designed to be fully responsive, adjusting seamlessly to vari
 ### Watchlist Page
 The Watchlist page displays a curated list of movies and TV series that the user has added from the Movies or TV Series pages.
 
-#### Features
+#### *Features*
 - Responsive grid layout of saved items.
 - Poster image (from the TMDB API).
 - Title.
 - "Remove" button to delete the item from the watchlist.
 - Changes made on this page (e.g., removing an item) are immediately reflected across the application, including on the original Movies/TV Series pages where the "Add to Watchlist" button is restored.
 
-#### Responsiveness
+#### *Responsiveness*
 - The grid layout is fully responsive
 - Adjusts the number of columns based on the screen size
 - Ensures a consistent and optimal viewing experience across desktops, tablets, and mobile devices
@@ -302,14 +299,14 @@ The Watchlist page displays a curated list of movies and TV series that the user
 ### Modal Popout
 The application uses a modal popout component to display trailers and other dynamic content without navigating away from the current page or when completing the contact us form. This Modal component is used in the latest movies carousel, detail page and contact us page.
 
-#### Features
+#### *Features*
 - Opens a centered overlay window (modal) containing an embedded video player (e.g., YouTube iframe).
 - Contact form confirmations.
 - Fetches trailer video URLs from the TMDB API.
 - The rest of the page is blurred to keep the user's focus on the modal content.
 - Includes a close icon/button to dismiss the modal and return to the current page.
 
-#### Responsiveness
+#### *Responsiveness*
 - The modal adapts to screen size
 - Scales video and layout appropriately on mobile devices
 - Maintains aspect ratio for an optimal viewing experience across devices
@@ -321,7 +318,7 @@ These features enhance the users experience by allowing media playback in contex
 
 The Contact Us Page provides users with a straightforward and accessible way to reach out with questions or feedback.
 
-#### Features
+#### *Features*
 - Input Fields
 - Name: Text input for the user's full name.
 - Email: Email input field with format validation.
@@ -329,27 +326,43 @@ The Contact Us Page provides users with a straightforward and accessible way to 
 - Name and emailfields include autocompletion to enhance the user experience.
 - Submit Button which triggers form validation and submission.
 
-#### Success Modal
+#### *Success Modal*
 - Upon successful submission, a modal popup confirms that the message has been sent.
 - Centered overlay with a success message (e.g., "Thank you for reaching out! We'll get back to you soon.").
 - Background is blurred to maintain focus on the modal.
 - Includes a close button/icon to dismiss the modal.
 
-#### Form Behavior
+#### *Form Behavior*
 - All fields are required.
 - Real-time input validation ensures proper formatting before submission.
 - Visual feedback (such as input highlighting or error messages) guides users to correct mistakes.
 
-#### Responsiveness
+#### *Responsiveness*
 - The form is fully responsive, scaling smoothly across devices from desktop to mobile.
 - Layout adjusts spacing and input sizes based on screen resolution.
 - Ensures accessibility and usability regardless of device.
 
 ![Contact Us](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/ContactUs.png)
 
+## Technologies Used
+
+| Tool             | Purpose                                 |
+|------------------|-----------------------------------------|
+| React            | Frontend framework                      |
+| Vite             | Build tool & dev server                 |
+| Tailwind CSS     | Utility-first styling                   |
+| TMDB API         | Fetch Movie & TV data                   |
+| Axios            | HTTP requests used with API             |
+| Framer Motion    | Animations                              |
+| Lucide React     | Icon library                            |
+| Prop-Types       | Type-checking for components            |
+| Swiper           | Carousels for trending sections         |
+| Tailwind Scrollbar Hide | Hide scrollbars in UI            |
+| Vite Plugin Compression | Compress assets for deployment   |
+
 ## Testing 
 
-### Lighthouse Testing
+### *Lighthouse Testing*
 
 Lighthouse is an open-source, automated tool developed by Google that helps developers improve the quality of their web applications by evaluating performance, accessibility, SEO, best practices, and more. By running a Lighthouse audit, you can identify areas where your site needs improvement and get suggestions for optimization.
 
@@ -362,23 +375,23 @@ Progressive Web App (PWA): Checks if your web application follows PWA principles
 How to Run Lighthouse Tests
 You can run Lighthouse in several ways:
 
-Chrome DevTools:
+*Chrome DevTools*:
 
 Open the webpage in Google Chrome.
 Right-click and choose "Inspect" or press Ctrl+Shift+I.
 Go to the "Lighthouse" tab.
 Click on "Generate report" to run the test.
-- Lighthouse CLI:
+- *Lighthouse CLI*:
 
   Install Lighthouse globally with npm install -g lighthouse.
   Run a Lighthouse audit by executing lighthouse https://yourwebsite.com in the terminal.
 
-- PageSpeed Insights:
+- *PageSpeed Insights*:
 
   Visit PageSpeed Insights.
   Enter the URL of your website, and the tool will run a Lighthouse report.
 
-- Web Vitals Extension:
+- *Web Vitals Extension*:
 
   Use the Web Vitals extension for Chrome to track real-time metrics directly in your browser.
 - Interpreting Lighthouse Scores
@@ -410,79 +423,167 @@ For more information, check the Lighthouse documentation.
 ![Watchlist Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Watchlist-page-lighthouse.png)
 
 #### Contact Us
-![Success Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/ContactUs-page-lighthouse.png)
+![Contact Us Page](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/ContactUs-page-lighthouse.png)
 
 All testing was conducted in Google Chrome using incognito mode.
 
 ### Validator Testing 
-#### W3C Validator
+#### *W3C Validator*
   
-To ensure that the code in this project is compliant with web standards, you can use the W3C Validator to check the HTML and CSS. This validator helps identify potential issues like incorrect syntax, missing tags, or non-standard code that might cause compatibility problems across browsers.
+To ensure that the code in this project is compliant with web standards, you can use the W3C Validator to check the HTML. This validator helps identify potential issues like incorrect syntax, missing tags, or non-standard code that might cause compatibility problems across browsers.
 
 ### How to Use W3C Validator
 
-#### HTML Validation
+#### *HTML Validation*
 
 - Visit the W3C HTML Validator.
 - Paste the URL of the webpage you want to validate or upload the HTML file directly.
 - The tool will analyze the code and provide you with a detailed report on any issues or warnings.
 - Correct any issues based on the feedback to improve code quality.
 
-#### CSS Validation
-
-- Visit the W3C CSS Validator.
-- Paste the URL of the CSS file or upload it directly.
-- The tool will provide feedback on any invalid CSS rules or potential improvements.
-
-#### Automated Checks
+#### *Automated Checks*
 
 If you want to integrate the validation into your development workflow, consider using continuous integration (CI) tools that run the W3C Validator checks automatically during the build process. Tools like Travis CI or GitHub Actions can run these checks on your codebase, ensuring ongoing compliance.
 
-#### Benefits of Using W3C Validator
-##### Improved Compatibility
+#### *Benefits of Using W3C Validator*
+##### *Improved Compatibility*
 - Ensures your pages work well across different browsers and devices.
 
-##### Better SEO
+##### *Better SEO*
 - Search engines prefer well-structured code, which can enhance your site's ranking.
 
-##### Increased Accessibility
+##### *Increased Accessibility*
 - Cleaner code makes it easier for screen readers and other assistive technologies to interpret your site.
 
-#### Common Errors and Fixes
+#### *Common Errors and Fixes*
 - The W3C Validator will highlight various errors and warnings. 
 
-Some common issues you may encounter include:
+#### *Some common issues you may encounter include*
 
 - Missing or misplaced tags (e.g., closing tags).
--  Deprecated attributes or elements.
+- Deprecated attributes or elements.
 - Invalid CSS properties.
 - For each issue, the W3C Validator provides suggestions for fixing the problem.
 
 
 ### HTML
-  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/)
+- No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/)
 
-#### Main page
+#### *Main page*
 ![w3c Index](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/HtmlChecker.png)
 
-This website is developed with JavaScript (React), and during the build process for deployment, all assets are bundled, minified, and served through a single HTML file for optimized delivery.
+This website is developed in vite using JavaScript (React), and during the build process for deployment, all assets are bundled, minified, and served through a single HTML file for optimized delivery.
 
 
-#### Automated Validation (Optional)
-If you're working in a development environment, you can integrate the CSS validation into your continuous integration (CI) pipeline. This allows you to automate validation checks and ensure that invalid CSS is caught early during the development process.
+#### *Automated Validation*
+##### *Eslint*
+ESLint is a pluggable linting tool for JavaScript and TypeScript. It helps you find and fix problems in your code by analyzing it according to a set of predefined or custom rules.
+##### *Tailwind CSS IntelliSense*
+Visual Studio Code (VS Code) extension that provides smart editor features for working with Tailwind CSS. It significantly improves the developer experience when writing Tailwind utility classes.
+##### *Jest*
+Jest is a JavaScript testing framework developed by Facebook, widely used for testing React applications. It provides an all-in-one solution for.
 
-You can use services like Travis CI, GitHub Actions, or CircleCI to set up automated CSS validation steps in your workflow.
+- Unit testing
+- Snapshot testing
+- Mocking
+- Code coverage
+
+Once setup you can make and run scripts to check if your scripts are working correctly.
+
+### *Jest Tests*
+
+The following tests where created and ran.
+```
+Card.test.jsx
+CastList.test.jsx
+ContactUs.test.jsx
+Home.test.jsx
+TrailerGallery.test.jsx
+Watchlist.test.jsx
+WatchlistButton.test.jsx
+WatchlistContext.test.jsx
+WatchProviders.test.jsx
+```
+
+#### Card Test
+![Card Test](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Card-Test.png)
+
+#### Castlist Test
+![Castlist Test](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Castlist-Test.png)
+
+#### ContactUs Test
+![ContactUs Test](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/ContactUs-test.png)
+
+#### Home Test
+![Home Test](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Home-Test.png)
+
+#### TrailerGallery Test
+![TrailerGallery Test](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/TrailerGallery-Test.png)
+
+#### Watchlist Test
+![Watchlist Test](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Watchlist-Test.png)
+
+#### WatchlistButton Test
+![WatchlistButton Test](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/WatchlistButton-Test.png)
+
+#### WatchlistContext Test
+![WatchlistContext Test](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/WatchlistContext-Test.png)
+
+#### WatchProviders Test
+![WatchProviders Test](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/WatchProviders-Test.png)
+
 
 ## Deployment
-### Local Deployment
+### *Local Deployment*
 To run this project locally on your computer, follow the steps below. This is useful for development, testing, or reviewing the project before deploying it to a live server.
 
-#### Prerequisites
+### *API Integration*
+
+- **TMDB (The Movie Database)**  
+  Used for fetching movies, TV shows, cast, and trailer information.  
+  [→ Get an API key](https://developer.themoviedb.org/docs/getting-started)
+
+- **JustWatch API (via TMDB)**  
+  Used to fetch streaming availability by region.
+
+#### *How to get a API key*
+
+- Step 1 Create a TMDB Account
+Go to https://www.themoviedb.org/signup
+Sign up with your email and verify it.
+
+- Step 2 Log In and Go to Settings
+After logging in, click on your profile avatar in the top-right corner.
+Choose Settings from the dropdown.
+
+- Step 3 Navigate to API Section
+In the left sidebar, click on API.
+Scroll down to the API Key section.
+
+- Step 4 Apply for a Developer API Key
+You’ll see an application form under "Request an API Key."
+Choose Developer or Personal use (not commercial unless you're building a paid app).
+Fill in the App name, Description, and Intended use.
+
+- Step 5 Submit the Form
+Once submitted, you'll get:
+  - API Key (v3 auth) – used in most HTTP requests.
+  - API Read Access Token (v4 auth) – used for more advanced OAuth workflows.
+
+#### *Best Practices*
+Store your key in .env files when using frameworks like Vite and react:
+```
+VITE_TMDB_API_KEY=your_api_key_here
+```
+- Never expose your key in public GitHub repos.
+- Respect TMDB’s rate limits and usage policies.
+
+#### *Prerequisites*
 You can find the clone link here [What2Watch Github](https://github.com/Maddz223/Milestone-Project-2)
 
 Ensure you have the following tools installed:
 
-#### Git
+#### *Git*
 
 Step 1: Clone the Repository, this can be done by going to the Sprinkles github and clicking code then copy the link.
 
@@ -494,35 +595,40 @@ Enter the code below
 ```
 git clone https://github.com/Maddz223/Milestone-Project-2.git
 ```
-Then direct yourself to your repository for the What2Watch site.
+Step 2: Then direct yourself to your repository for the What2Watch site.
 ```
 cd Milestone-Project-2
 cd What2Watch
 ```
-Step 2: Installing the dependencies.
+Step 3: Installing the dependencies.
 
 ```
 npm install
 ```
 This uses package.json to install all the needed dependencies.
 
-Step 3: Build the project.
+Step 4: Build the project.
 
 ```
 npm run build
 ```
 This builds the project and creates a dist/ folder with opitmized files.
 
-Step 4: Run the build in development mode.
+Step 5: Run the build in development mode.
 
 ```
 npm run dev
 ```
+
 This uses vite internal local host development server which is accessible at http://localhost:5173/Milestone-Project-2/ 
 
 This allows for auto reload and debug tools like google inspect.
 
-#### Github Pages
+> ⚠️ Make sure you have a TMDB API key set in your `.env`:
+```env
+VITE_TMDB_API_KEY=your_tmdb_api_key_here
+```
+#### *Deploying to Github Pages*
 Step 1: Installing gh-pages
 
 ```
@@ -564,29 +670,44 @@ Then your app is live at:
 
 https://yourusername.github.io/Milestone-Project-2/
 
+---
+
+### *Recommended Extensions*
+
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+- [ESLint](https://eslint.org/) – For code quality & formatting.
+- [Jest](https://jestjs.io/) – For unit testing.
+- [React](https://react.dev/) - Ease of use.
+- [Vite](https://vite.dev/) - Next Generation Frontend Tooling
 
 ## Credits 
-- Colour pallet for the site was taken from [Colorkit](https://colorkit.co/color-palette-generator/111827-1F2937-4F46E5-fff-000000/) 
-- The icons on the site were taken from Lud
-- Tailwindcss for their amazing libary that helped build this site[Tailwindcss](https://tailwindcss.com/)
-- Java script for lightbox in the gallery from [React](https://react.dev/)
-[Vite](https://vite.dev/)
 
 ### Content 
 
-- The text for all the pages was generated by ChatGPT. [ChatGPT](https://chatgpt.com/)
-- Instructions on how to implement bootstrap 5 was taken from [Bootstrap](https://getbootstrap.com/)
-- The icons for the site were taken from [Font Awesome](https://fontawesome.com/)
+- Colour pallet for the site was taken from [Colorkit](https://colorkit.co/color-palette-generator/111827-1F2937-4F46E5-fff-000000/) 
+- The icons on the site were taken from lucide-react dependency [Lucide React](https://lucide.dev/guide/packages/lucide-react)
+- Tailwindcss for reducing css that helped in building this site[Tailwindcss](https://tailwindcss.com/)
+- React for their Comprehensive, beginner-friendly React docs. [React](https://react.dev/)
+- Vite for building an amazing tool. [Vite](https://vite.dev/)
 
-### Media
+### *Media*
 
-- The photos and images used on this site are from [Freepik](https://www.freepik.com/pikaso/ai-image-generator)
+- All media was taken from TMDB API. [TMDB](https://www.themoviedb.org/)
 
-### Special Thanks
-- To my wife for putting up with my annoying questions and helping me brainstorm.
-- To Lyupche Bozhinovski, for helping me trouble shoot issues.
-- My mentor, Dick Vlaanderen, for helping me stay focused.
+### *Special Thanks*
+- To my wife for putting up with my annoying questions, helping me brainstorm and testing.
+- To Samantha Spencer, for testing.
+- To my mother and Nan, for testing.
 
-### Extra Comments
+### *Extra Comments*
 
-- My commits were a little messy and misleading. once i spoke to my mentor he helped me understand where i was going wrong and to stay more consistent.
+- My commits were a little messy and misleading.
+- I made a error with making another branch then had to merge before i carried on.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License.
