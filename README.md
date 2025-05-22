@@ -20,6 +20,7 @@ What the Website Offers:
 ![Responsive Mockup](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Responsive.png)
 
 <sub>Experience smooth and responsive UI across all devices.</sub>
+
 ## Planning
 
 ## User Stories & Acceptance Criteria
@@ -291,7 +292,11 @@ This page serves as a central hub for discovering and saving movies and TV serie
 
 ![Movies](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Movies.png)
 
+<sub>Movies</sub>
+
 ![Tv Series](https://github.com/Maddz223/Milestone-Project-2/blob/main/Assets/README-images/Tv-Series.png)
+
+<sub>Tv Series</sub>
 ### Details Page
 
 The Details Page provides an in-depth view of a selected movie or tv series, including visual assets, metadata, cast, trailers, and availability information. This details page is used for both moives and tv series pages.
